@@ -141,6 +141,9 @@ private:
   // height of a Node, nullptr is 0, root is 1, static, no access to 'this'
   // helper function to height(), used by printVertical
   static int getHeight(const Node *n);
+
+  // recursive helper method for size.
+  int size(Node* root);
 };
 
 #endif // BSTMAP_H
