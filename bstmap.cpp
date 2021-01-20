@@ -94,7 +94,18 @@ vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const
 // height of root is max height of subtrees + 1
 int BSTMap::height() const 
 { 
-  return 0; 
+  return height(this.root); 
+}
+
+int BSTMap::height(Node* root) const 
+{ 
+  if(root == nullptr)
+  {
+    return 0;
+  }
+  int left = height(root->left);
+  int right = height(root->right);
+  return max(left,right)+1;
 }
 
 // height of a Node, nullptr is 0, root is 1, static, no access to 'this'
