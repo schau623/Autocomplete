@@ -19,7 +19,8 @@
 
 using namespace std;
 
-class BSTMap {
+class BSTMap 
+{
 
   // display BST tree in a human-readable format
   // comment out printSideways or printVertical
