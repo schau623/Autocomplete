@@ -22,10 +22,19 @@ BSTMap::BSTMap(const vector<value_type> &v) {}
 BSTMap::~BSTMap() {}
 
 // delete all nodes in tree
-void BSTMap::clear() {}
+void BSTMap::clear() 
+{
+}
 
 // true if no nodes in BST
-bool BSTMap::empty() const { return true; }
+bool BSTMap::empty() const 
+{ 
+  if(root == nullptr)
+  {
+    return true;
+  }
+  return false;
+}
 
 // Number of nodes in BST
 int BSTMap::size() const { return 0; }
