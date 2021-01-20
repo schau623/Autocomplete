@@ -6,14 +6,16 @@
 using namespace std;
 
 // print a Node in easy to read format
-ostream &operator<<(ostream &out, const BSTMap::Node &n) {
+ostream &operator<<(ostream &out, const BSTMap::Node &n) 
+{
   out << "[" << n.data.first << "=" << n.data.second << "]";
   return out;
 }
 
 // display BST tree in a human-readable format
 // comment out printSideways or printVertical
-ostream &operator<<(ostream &out, const BSTMap &bst) {
+ostream &operator<<(ostream &out, const BSTMap &bst) 
+{
   BSTMap::printSideways(out, bst.root);
   out << endl;
   // BSTMap::printVertical([out], bst.root);
@@ -30,7 +32,8 @@ ostream &operator<<(ostream &out, const BSTMap &bst) {
           1
               3
  */
-ostream &BSTMap::printSideways(ostream &out, const Node *curr, int level) {
+ostream &BSTMap::printSideways(ostream &out, const Node *curr, int level) 
+{
   const static char space = ' ';
   const static int readabilitySpaces = 4;
   if (curr == nullptr) {
