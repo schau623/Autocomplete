@@ -21,41 +21,45 @@ BSTMap::BSTMap(const vector<value_type> &v) {}
 // destructor
 BSTMap::~BSTMap() 
 {
-
+  delete root;
+  // doesnt delete nodes...just root. might improve later
 }
 
 // delete all nodes in tree
 void BSTMap::clear() 
 {
-<<<<<<< HEAD
-=======
   if(root == nullptr)
   {
     return;
   }
   root = nullptr;
->>>>>>> b2a542db128468186e036c4ab2fa52c0d8dc9346
 }
 
 // true if no nodes in BST
 bool BSTMap::empty() const 
 { 
-<<<<<<< HEAD
   if(root == nullptr)
   {
     return true;
   }
   return false;
-=======
-  return true; 
->>>>>>> b2a542db128468186e036c4ab2fa52c0d8dc9346
 }
 
 // Number of nodes in BST
 int BSTMap::size() const 
 { 
-  return 0; 
+  return size(root);
 }
+
+int BSTMap::size(Node* root)
+{
+  if(root == nullptr)
+  {
+    return 0;
+  }
+  else return size(root->left) + 1 + size(root->right);
+}
+
 
 // true if item is in BST
 bool BSTMap::contains(const key_type &key) const 
