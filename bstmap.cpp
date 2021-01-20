@@ -103,6 +103,10 @@ int BSTMap::height(Node* root) const
   {
     return 0;
   }
+  if(root->left == nullptr && root->right == nullptr)
+  {
+    return 1;
+  }
   int left = height(root->left);
   int right = height(root->right);
   return max(left,right)+1;
