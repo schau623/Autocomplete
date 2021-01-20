@@ -64,9 +64,17 @@ int BSTMap::size(Node* root)
 // true if item is in BST
 bool BSTMap::contains(const key_type &key) const 
 { 
-  return true; 
+  return contains(this.root, &key); 
 }
 
+bool BSTMap::contains(Node* root, const key_type &key) const 
+{
+  if(root->data.first == key)
+  {
+    return true;
+  }
+  return(contains(root->left, &key) || contains(root->right, &key));
+}
 // If k matches the key returns a reference to its value
 // If k does not match any key, inserts a new element
 // with that key and returns a reference to its mapped value.

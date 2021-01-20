@@ -144,6 +144,7 @@ private:
 
   // recursive helper method for size.
   int size(Node* root);
+  bool contains(Node* root, const key_type &key);
 };
 
 #endif // BSTMAP_H
