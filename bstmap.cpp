@@ -27,28 +27,21 @@ BSTMap::~BSTMap()
 // delete all nodes in tree
 void BSTMap::clear() 
 {
-<<<<<<< HEAD
-=======
   if(root == nullptr)
   {
     return;
   }
   root = nullptr;
->>>>>>> b2a542db128468186e036c4ab2fa52c0d8dc9346
 }
 
 // true if no nodes in BST
 bool BSTMap::empty() const 
 { 
-<<<<<<< HEAD
   if(root == nullptr)
   {
     return true;
   }
   return false;
-=======
-  return true; 
->>>>>>> b2a542db128468186e036c4ab2fa52c0d8dc9346
 }
 
 // Number of nodes in BST
