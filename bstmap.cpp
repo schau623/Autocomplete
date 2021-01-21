@@ -214,7 +214,7 @@ bool BSTMap::operator==(const BSTMap &other) const
   return isSameTree(root, other.root);
 }
 
-bool isSameTree(Node* tree1, Node* tree2)
+bool BSTMap::isSameTree(Node* tree1, Node* tree2)
 {
   if(tree1 == nullptr && tree2 == nullptr)
   {
@@ -234,6 +234,6 @@ bool isSameTree(Node* tree1, Node* tree2)
 // not == to each other
 bool BSTMap::operator!=(const BSTMap &other) const 
 { 
-  bool return_value = !(isSameTree(root, other.root));
+  bool return_value = !isSameTree(root, other.root);
   return return_value;
 }
