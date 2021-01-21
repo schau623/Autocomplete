@@ -45,26 +45,26 @@ bool BSTMap::empty() const
   return false;
 }
 
-// Number of nodes in BST
-int BSTMap::size() const 
-{ 
-  return size(root);
+
+int BSTMap::size() const {
+  int return_val = sizeHelper(root);
+  return return_val;
 }
 
-int BSTMap::size(Node* root)
+int BSTMap::sizeHelper(Node* root) const
 {
   if(root == nullptr)
   {
     return 0;
-  }
-  else return size(root->left) + 1 + size(root->right);
+  } else
+    return sizeHelper(root->left) + 1 + sizeHelper(root->right);
 }
 
 
 // true if item is in BST
 bool BSTMap::contains(const key_type &key) const 
 { 
-  return contains(this.root, &key); 
+  return contains(root, key); 
 }
 
 bool BSTMap::contains(Node* root, const key_type &key) const 
@@ -73,7 +73,7 @@ bool BSTMap::contains(Node* root, const key_type &key) const
   {
     return true;
   }
-  return(contains(root->left, &key) || contains(root->right, &key));
+  return(contains(root->left, key) || contains(root->right, key));
 }
 // If k matches the key returns a reference to its value
 // If k does not match any key, inserts a new element
@@ -94,23 +94,23 @@ vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const
 // height of root is max height of subtrees + 1
 int BSTMap::height() const 
 { 
-  return getHeight(this.root); 
+  return getHeight(root); 
 }
 
 // height of a Node, nullptr is 0, root is 1, static, no access to 'this'
 // helper function to height(), used by printVertical
-int BSTMap::getHeight(const Node *n) 
+int BSTMap::getHeight(const Node* n)
 { 
-  if(root == nullptr)
+  if(n == nullptr)
   {
     return 0;
   }
-  if(root->left == nullptr && root->right == nullptr)
+  if(n->left == nullptr && n->right == nullptr)
   {
     return 1;
   }
-  int left = height(root->left);
-  int right = height(root->right);
+  int left = getHeight(n->left);
+  int right = getHeight(n->right);
   return max(left,right)+1; 
 }
 

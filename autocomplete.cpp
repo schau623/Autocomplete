@@ -9,9 +9,18 @@ void testBSTAll();
 void Autocomplete::readFile(const string &fileName) 
 {
   ifstream ifs(fileName);
-  // TODO(student)
+  ifs.open(fileName);
+  /*mapped_type a;
+  key_type b;
+  while(ifs >> a >> b)
+  {
+    pair<key_type, mapped_type> to_add;
+    to_add.first = a;
+    to_add.second = b;
+    phrases.insert(to_add);
+  }*/
   ifs.close();
-  phrases.rebalance();
+  // phrases.rebalance();
   // cout << phrases << endl;
 }
 

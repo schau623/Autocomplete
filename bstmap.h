@@ -115,6 +115,9 @@ private:
     struct Node *right;
   };
 
+  // recursive helper method for size.
+  int sizeHelper(Node* root) const;
+
   // refer to data type "struct Node" as Node
   using Node = struct Node;
 
@@ -142,9 +145,8 @@ private:
   // helper function to height(), used by printVertical
   static int getHeight(const Node *n);
 
-  // recursive helper method for size.
-  int size(Node* root);
-  bool contains(Node* root, const key_type &key);
+  
+  bool contains(Node* root, const key_type &key) const;
 };
 
 #endif // BSTMAP_H
