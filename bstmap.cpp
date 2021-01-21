@@ -190,7 +190,9 @@ void BSTMap::inorder(void visit(const value_type &item)) const
 
 void BSTMap::inorder(Node* current, void visit(const value_type &item)) const{
     if(current == nullptr)
+    {
         return;
+    }
     inorder(current->left, visit);
     value_type v = current->data;
     visit(v);
@@ -200,13 +202,35 @@ void BSTMap::inorder(Node* current, void visit(const value_type &item)) const{
 // preorder traversal: root-left-right
 void BSTMap::preorder(void visit(const value_type &item)) const 
 {
+  preorder(root, visit);
+}
 
+void BSTMap::preorder(Node* current, void visit(const value_type &item)) const{
+    if(current == nullptr)
+    {
+        return;
+    }
+    value_type v = current->data;
+    visit(v);
+    preorder(current->left, visit);
+    preorder(current->right, visit);
 }
 
 // postorder traversal: left-right-root
 void BSTMap::postorder(void visit(const value_type &item)) const 
 {
+  postorder(root, visit);
+}
 
+void BSTMap::postorder(Node* current, void visit(const value_type &item)) const{
+    if(current == nullptr)
+    {
+        return;
+    }
+    preorder(current->left, visit);
+    preorder(current->right, visit);
+    value_type v = current->data;
+    visit(v);
 }
 
 // balance the BST by saving all nodes to a vector inorder

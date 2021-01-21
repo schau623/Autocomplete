@@ -159,8 +159,10 @@ private:
   // == helper  
   bool isSameTree(Node* tree1, Node* tree2) const;
 
-  // inOrder helper
+  // traversal helpers
   void inorder(Node* current, void visit(const value_type &item)) const;
+  void preorder(Node* current, void visit(const value_type &item)) const;
+  void postorder(Node* current, void visit(const value_type &item)) const;
 };
 
 #endif // BSTMAP_H
