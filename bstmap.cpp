@@ -1,5 +1,3 @@
-//MR WHITE
-//TIPPY
 // Yusuf Pisan pisan@uw.edu
 // 17 Jan 2021
 
@@ -26,6 +24,28 @@ BSTMap::~BSTMap()
   delete root;
   // doesnt delete nodes...just root. might improve later
 }
+
+bool BSTMap::insert(value_type theData)
+{
+  Node* toAdd = new Node();
+  toAdd.data = theData;
+  return insertHelper(toAdd, root);
+}
+
+bool BSTMap::insertHelper(Node* toAdd, Node* current)
+{
+  if(current == nullptr)
+  {
+    current = toAdd;
+    return true;
+  }
+  else if(current->data.second < toAdd->data.second)
+  {
+    return insertHelper(toAdd, current->right);
+  }
+
+}
+
 
 // delete all nodes in tree
 void BSTMap::clear() 

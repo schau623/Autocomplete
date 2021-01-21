@@ -145,7 +145,10 @@ private:
   // helper function to height(), used by printVertical
   static int getHeight(const Node *n);
 
-  
+  bool insert(value_type theData);
+
+  bool insertHelper(Node* toAdd, Node* root);
+
   bool contains(Node* root, const key_type &key) const;
 };
 
