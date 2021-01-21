@@ -148,9 +148,16 @@ private:
   // Insert method to add values
   void insert(Node* toAdd, Node* current);
 
+  // Contains recursive traversal helper method
   bool contains(Node* root, const key_type &key) const;
 
   void clearHelper(Node* current);
+
+  // Copy constructor recursive traversal helper: Traverses both trees
+  void copyHelper(Node* currentNewTree, Node* currentOldTree);
+
+  // == helper  
+  bool isSameTree(Node* tree1, Node* tree2);
 };
 
 #endif // BSTMAP_H

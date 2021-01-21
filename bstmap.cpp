@@ -11,7 +11,22 @@
 using namespace std;
 
 // copy constructor
-BSTMap::BSTMap(const BSTMap &bst) {}
+BSTMap::BSTMap(const BSTMap &bst) 
+{
+  copyHelper(root, bst.root);
+}
+
+void BSTMap::copyHelper(Node* currentNewTree, Node* currentOldTree)
+{
+  if(currentOldTree == nullptr)
+  {
+    return;
+  }
+  currentNewTree = new Node();
+  currentNewTree->data = currentOldTree->data;
+  copyHelper(currentNewTree->right, currentOldTree->right);
+  copyHelper(currentNewTree->left, currentOldTree->left);
+}
 
 // given an array of length n
 // create a tree to have all items in that array
@@ -109,8 +124,13 @@ bool BSTMap::contains(Node* root, const key_type &key) const
   {
     return true;
   }
+  if(root == nullptr)
+  {
+    return false;
+  }
   return(contains(root->left, key) || contains(root->right, key));
 }
+
 // If k matches the key returns a reference to its value
 // If k does not match any key, inserts a new element
 // with that key and returns a reference to its mapped value.
@@ -154,7 +174,11 @@ int BSTMap::getHeight(const Node* n)
 // compatibility with std::map
 size_t BSTMap::count(const string &k) const 
 { 
-  return 0; 
+  if(!contains(k))
+  {
+    return 0;
+  }
+  return 1;
 }
 
 // inorder traversal: left-root-right
@@ -187,11 +211,29 @@ void BSTMap::rebalance()
 // AND the same item values at all the nodes
 bool BSTMap::operator==(const BSTMap &other) const 
 { 
-  return true; 
+  return isSameTree(root, other.root);
+}
+
+bool isSameTree(Node* tree1, Node* tree2)
+{
+  if(tree1 == nullptr && tree2 == nullptr)
+  {
+    return true;
+  }
+  else if((tree1 == nullptr && tree2 != nullptr) || (tree1 != nullptr && tree2 == nullptr))
+  {
+    return false;
+  }
+  else if(tree1->data != tree2->data)
+  {
+    return false;
+  }
+  return (isSameTree(tree1->left, tree2->left) && isSameTree(tree1->right, tree2->right));
 }
 
 // not == to each other
 bool BSTMap::operator!=(const BSTMap &other) const 
 { 
-  return true; 
+  bool return_value = !(isSameTree(root, other.root));
+  return return_value;
 }
