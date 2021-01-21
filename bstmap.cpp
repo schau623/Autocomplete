@@ -21,7 +21,7 @@ BSTMap::BSTMap(const vector<value_type> &v)
   for(int i = 0; i < v.size(); i++)
   {
     Node* theNode = new Node();
-    theNode.data = v[i];
+    theNode->data = v[i];
     insert(theNode, root);
   }
 }
