@@ -1,10 +1,11 @@
+//MR WHITE
 // Yusuf Pisan pisan@uw.edu
 // 17 Jan 2021
 
 // BST class
 // Creates a BST to store values
 // Uses Node which holds the data
-//test
+
 #include "bstmap.h"
 #include <cassert>
 
@@ -45,7 +46,6 @@ bool BSTMap::empty() const
   return false;
 }
 
-
 int BSTMap::size() const {
   int return_val = sizeHelper(root);
   return return_val;
@@ -59,7 +59,6 @@ int BSTMap::sizeHelper(Node* root) const
   } else
     return sizeHelper(root->left) + 1 + sizeHelper(root->right);
 }
-
 
 // true if item is in BST
 bool BSTMap::contains(const key_type &key) const 
