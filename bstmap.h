@@ -145,11 +145,14 @@ private:
   // helper function to height(), used by printVertical
   static int getHeight(const Node *n);
 
-  bool insert(value_type theData);
+  // Insert method to add values
+  void insert(value_type theData);
 
-  bool insertHelper(struct Node* toAdd, struct Node* root);
+  void insert(Node* toAdd, Node* current);
 
   bool contains(Node* root, const key_type &key) const;
+
+  void clearHelper(Node* current);
 };
 
 #endif // BSTMAP_H

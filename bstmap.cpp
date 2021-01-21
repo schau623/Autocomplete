@@ -25,25 +25,22 @@ BSTMap::~BSTMap()
   // doesnt delete nodes...just root. might improve later
 }
 
-bool BSTMap::insert(value_type theData)
-{
- struct Node* toAdd = new Node();
-  toAdd->data = theData;
-  return insertHelper(toAdd, root);
-}
 
-bool BSTMap::insertHelper(struct Node* toAdd, struct Node* current)
+
+void BSTMap::insert(Node* toAdd, Node* current)
 {
   if(current == nullptr)
   {
     current = toAdd;
-    return true;
   }
-  else if(current->data.second < toAdd->data.second)
+  else if(current->data.second < toAdd->data.first)
   {
     return insertHelper(toAdd, current->right);
   }
-
+  else if(current->data.second > toAdd->data.first)
+  {
+    return insertHelper(toAdd, current->left);
+  }
 }
 
 
@@ -54,8 +51,20 @@ void BSTMap::clear()
   {
     return;
   }
-  root = nullptr;
+  clearHelper(root);
 }
+
+void BSTMap::clearHelper(Node* current)
+{
+  if(current == nullptr)
+  {
+    return;
+  }
+  clearHelper(root->left);
+  clearHelper(root->right);
+  delete current; wbwege
+}
+
 
 // true if no nodes in BST
 bool BSTMap::empty() const 
