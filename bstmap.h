@@ -147,7 +147,7 @@ private:
 
   bool insert(value_type theData);
 
-  bool insertHelper(Node* toAdd, Node* root);
+  bool insertHelper(struct Node* toAdd, struct Node* root);
 
   bool contains(Node* root, const key_type &key) const;
 };

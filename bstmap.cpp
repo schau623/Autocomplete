@@ -27,12 +27,12 @@ BSTMap::~BSTMap()
 
 bool BSTMap::insert(value_type theData)
 {
-  Node* toAdd = new Node();
-  toAdd.data = theData;
+ struct Node* toAdd = new Node();
+  toAdd->data = theData;
   return insertHelper(toAdd, root);
 }
 
-bool BSTMap::insertHelper(Node* toAdd, Node* current)
+bool BSTMap::insertHelper(struct Node* toAdd, struct Node* current)
 {
   if(current == nullptr)
   {
