@@ -163,6 +163,8 @@ private:
   void inorder(Node* current, void visit(const value_type &item)) const;
   void preorder(Node* current, void visit(const value_type &item)) const;
   void postorder(Node* current, void visit(const value_type &item)) const;
+
+  void storeNodes(Node* curr, vector<Node*> &save);
 };
 
 #endif // BSTMAP_H

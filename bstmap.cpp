@@ -237,9 +237,19 @@ void BSTMap::postorder(Node* current, void visit(const value_type &item)) const{
 // and then recreating the BST from the vector
 void BSTMap::rebalance() 
 {
-
+  vector<Node*> save;
+  storeNodes(root, save);
 }
-
+void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
+{
+  if(curr == nullptr)
+  {
+    return;
+  }
+  rebalanceHelper(curr->left, save);
+  save.push_back(curr);
+  rebalanceHelper(curr->right, save);
+}
 // trees are equal if they have the same structure
 // AND the same item values at all the nodes
 bool BSTMap::operator==(const BSTMap &other) const 
