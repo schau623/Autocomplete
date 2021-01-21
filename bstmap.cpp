@@ -16,13 +16,20 @@ BSTMap::BSTMap(const BSTMap &bst) {}
 // given an array of length n
 // create a tree to have all items in that array
 // with the minimum height (uses same helper as rebalance)
-BSTMap::BSTMap(const vector<value_type> &v) {}
+BSTMap::BSTMap(const vector<value_type> &v) 
+{
+  for(int i = 0; i < v.size(); i++)
+  {
+    Node* theNode = new Node();
+    theNode.data = v[i];
+    insert(theNode, root);
+  }
+}
 
 // destructor
 BSTMap::~BSTMap() 
 {
-  delete root;
-  // doesnt delete nodes...just root. might improve later
+  clear();
 }
 
 
@@ -33,13 +40,13 @@ void BSTMap::insert(Node* toAdd, Node* current)
   {
     current = toAdd;
   }
-  else if(current->data.second < toAdd->data.first)
+  else if(current->data.first < toAdd->data.first)
   {
-    return insertHelper(toAdd, current->right);
+    return insert(toAdd, current->right);
   }
-  else if(current->data.second > toAdd->data.first)
+  else if(current->data.first > toAdd->data.first)
   {
-    return insertHelper(toAdd, current->left);
+    return insert(toAdd, current->left);
   }
 }
 
@@ -62,7 +69,7 @@ void BSTMap::clearHelper(Node* current)
   }
   clearHelper(root->left);
   clearHelper(root->right);
-  delete current; wbwege
+  delete current;
 }
 
 

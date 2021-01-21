@@ -146,8 +146,6 @@ private:
   static int getHeight(const Node *n);
 
   // Insert method to add values
-  void insert(value_type theData);
-
   void insert(Node* toAdd, Node* current);
 
   bool contains(Node* root, const key_type &key) const;
