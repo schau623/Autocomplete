@@ -239,6 +239,8 @@ void BSTMap::rebalance()
 {
   vector<Node*> save;
   storeNodes(root, save);
+  int n = save.size();
+  root = rebalanceHelper(save, 0, n-1);
 }
 void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
 {
@@ -251,9 +253,17 @@ void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
   storeNodes(curr->right, save);
 }
 
-void BSTMap::rebalanceHelper(vector<Node*> &save, int start, int end)
+Node* BSTMap::rebalanceHelper(vector<Node*> &save, int start, int end)
 {
-  
+  if(start > end)
+  {
+    return nullptr;
+  }
+  int mid = (start + end)/2;
+  Node* root = save[mid];
+  root->left = rebalanceHelper(save, start, mid-1);
+  root->right = rebalanceHelper(save, mid+1, end);
+  return root;
 }
 // trees are equal if they have the same structure
 // AND the same item values at all the nodes
