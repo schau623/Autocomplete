@@ -160,7 +160,7 @@ private:
   bool isSameTree(Node* tree1, Node* tree2) const;
 
   // inOrder helper
-  int inorder(Node* current, void visit(const value_type &item)) const;
+  void inorder(Node* current, void visit(const value_type &item)) const;
 };
 
 #endif // BSTMAP_H
