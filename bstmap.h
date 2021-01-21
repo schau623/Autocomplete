@@ -164,7 +164,9 @@ private:
   void preorder(Node* current, void visit(const value_type &item)) const;
   void postorder(Node* current, void visit(const value_type &item)) const;
 
+  //helpers for rebalance()
   void storeNodes(Node* curr, vector<Node*> &save);
+  void rebalanceHelper(vector<Node*> &save, int start, int end);
 };
 
 #endif // BSTMAP_H
