@@ -185,7 +185,16 @@ size_t BSTMap::count(const string &k) const
 // takes a function that takes a single parameter of type T
 void BSTMap::inorder(void visit(const value_type &item)) const 
 {
+  inorder(root, visit);
+}
 
+void BSTMap::inorder(Node* current, void visit(const value_type &item)) const{
+    if(current == nullptr)
+        return;
+    inorder(current->left, visit);
+    value_type v = current->data;
+    visit(v);
+    inorder(current->right, visit);
 }
 
 // preorder traversal: root-left-right
@@ -214,7 +223,7 @@ bool BSTMap::operator==(const BSTMap &other) const
   return isSameTree(root, other.root);
 }
 
-bool BSTMap::isSameTree(Node* tree1, Node* tree2)
+bool BSTMap::isSameTree(Node* tree1, Node* tree2) const
 {
   if(tree1 == nullptr && tree2 == nullptr)
   {
@@ -234,6 +243,6 @@ bool BSTMap::isSameTree(Node* tree1, Node* tree2)
 // not == to each other
 bool BSTMap::operator!=(const BSTMap &other) const 
 { 
-  bool return_value = !isSameTree(root, other.root);
-  return return_value;
+  bool return_value = isSameTree(root, other.root);
+  return !(return_value);
 }

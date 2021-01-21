@@ -157,7 +157,10 @@ private:
   void copyHelper(Node* currentNewTree, Node* currentOldTree);
 
   // == helper  
-  bool isSameTree(Node* tree1, Node* tree2);
+  bool isSameTree(Node* tree1, Node* tree2) const;
+
+  // inOrder helper
+  inorder(Node* current, void visit(const value_type &item)) const;
 };
 
 #endif // BSTMAP_H
