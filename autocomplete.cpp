@@ -29,9 +29,8 @@ bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b)
   return a.second > b.second;
 }
 
-vector<BSTMap::value_type>
-Autocomplete::complete(const BSTMap::key_type &prefix) const 
+vector<BSTMap::value_type> Autocomplete::complete(const string &prefix) const 
 {
-  vector<BSTMap::value_type> v =  getAll(prefix);
+  vector<BSTMap::value_type> v =  phrases.getAll(prefix);
   return v;
 }

@@ -1,5 +1,5 @@
-#include "autocomplete.h"
 #include "bstmap.h"
+#include "autocomplete.h"
 #include <cassert>
 #include <fstream>
 #include <iostream>
