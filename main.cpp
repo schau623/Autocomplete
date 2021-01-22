@@ -15,7 +15,7 @@ void testMain() {
   testACAll();
 }
 int main(int argc, char *argv[]) {
-  if (argc == 3) {
+  /*if (argc == 3) {
     Autocomplete ac;
     string filename = argv[1];
     string prefix = argv[2];
@@ -27,5 +27,6 @@ int main(int argc, char *argv[]) {
   } else {
     testMain();
   }
-  return EXIT_SUCCESS;
+  return EXIT_SUCCESS;*/
+  cout << "Hello World!" << endl;
 }

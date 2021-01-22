@@ -10,7 +10,7 @@ void Autocomplete::readFile(const string &fileName)
 {
   ifstream ifs(fileName);
   ifs.open(fileName);
-  /*mapped_type a;
+  mapped_type a;
   key_type b;
   while(ifs >> a >> b)
   {
@@ -18,10 +18,9 @@ void Autocomplete::readFile(const string &fileName)
     to_add.first = a;
     to_add.second = b;
     phrases.insert(to_add);
-  }*/
+  }
   ifs.close();
-  // phrases.rebalance();
-  // cout << phrases << endl;
+  phrases.rebalance();
 }
 
 bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b) 
