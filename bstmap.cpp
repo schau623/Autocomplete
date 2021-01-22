@@ -277,7 +277,7 @@ void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
   storeNodes(curr->right, save);
 }
 
-Node* BSTMap::rebalanceHelper(vector<Node*> &save, int start, int end)
+BSTMap::Node* BSTMap:: rebalanceHelper(vector<Node*> &save, int start, int end)
 {
   if(start > end)
   {
