@@ -7,6 +7,9 @@ using namespace std;
 
 class Autocomplete {
 public:
+  using key_type = string;
+  using mapped_type = uint64_t;
+  using value_type = pair<key_type, mapped_type>;
   Autocomplete() = default;
   void readFile(const string &fileName);
   vector<BSTMap::value_type> complete(const string &prefix) const;

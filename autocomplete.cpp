@@ -1,6 +1,7 @@
 #include "autocomplete.h"
 #include <algorithm>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -10,8 +11,8 @@ void Autocomplete::readFile(const string &fileName)
 {
   ifstream ifs(fileName);
   ifs.open(fileName);
-  mapped_type a;
-  key_type b;
+  string a;
+  uint64_t b;
   while(ifs >> a >> b)
   {
     pair<key_type, mapped_type> to_add;
