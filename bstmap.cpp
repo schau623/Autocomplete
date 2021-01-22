@@ -144,7 +144,7 @@ bool BSTMap::contains(Node* root, const key_type &key) const
 BSTMap::mapped_type &BSTMap::operator[](const key_type &k) 
 {
   //first search thro bstmap for k
-  mapped_type& retVal;
+  mapped_type& retVal = (root->data.second);
   bool found = getMapType(retVal, k, root);
   if(found)
   {
@@ -152,8 +152,8 @@ BSTMap::mapped_type &BSTMap::operator[](const key_type &k)
   }
   // If not found, we will insert it as a new value_type then traverse to find
   // the mapped_type&
-  value_type<key_type, mapped_type> toAdd;
-  toAdd.first = *k;
+  pair<key_type, mapped_type> toAdd;
+  toAdd.first = k;
   toAdd.second = 0;
   insert(toAdd);
   getMapType(retVal, k, root);
@@ -166,9 +166,9 @@ bool BSTMap::getMapType(mapped_type& retVal, const key_type &k, Node* curr)
   {
     return false;
   }
-  if(*k == curr->data.first)
+  if(k == curr->data.first)
   {
-    retVal = &(curr->data.second);
+    retVal = (curr->data.second);
     return true;
   }
   // recursive case: Traverse tree to see if key exists

@@ -32,7 +32,6 @@ bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b)
 vector<BSTMap::value_type>
 Autocomplete::complete(const BSTMap::key_type &prefix) const 
 {
-  vector<BSTMap::value_type> v;
-  // TODO(student)
+  vector<BSTMap::value_type> v =  getAll(prefix);
   return v;
 }

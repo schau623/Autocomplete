@@ -7,14 +7,14 @@
 
 using namespace std;
 
-void testBSTAll();
+/*void testBSTAll();
 void testACAll();
 
 void testMain() {
   testBSTAll();
   testACAll();
 }
-
+*/
 int main(int argc, char *argv[]) {
   /*if (argc == 3) {
     Autocomplete ac;
@@ -29,5 +29,10 @@ int main(int argc, char *argv[]) {
     testMain();
   }
   return EXIT_SUCCESS;*/
-  cout << "Hello World!" << endl;
+  BSTMap tree;
+  pair<string, int> a;
+  a.first = "Seattle";
+  a.second = 750000;
+  tree.insert(a);
+  cout << tree << endl;
 }
