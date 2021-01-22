@@ -11,8 +11,8 @@ void Autocomplete::readFile(const string &fileName)
 {
   ifstream ifs(fileName);
   ifs.open(fileName);
-  string a;
-  uint64_t b;
+  key_type a;
+  mapped_type b;
   while(ifs >> a >> b)
   {
     pair<key_type, mapped_type> to_add;

@@ -37,7 +37,7 @@ BSTMap::BSTMap(const vector<value_type> &v)
   {
     Node* theNode = new Node();
     theNode->data = v[i];
-    insert(theNode, root);
+    insertHelper(theNode, root);
   }
 }
 
@@ -49,7 +49,14 @@ BSTMap::~BSTMap()
 
 
 
-void BSTMap::insert(Node* toAdd, Node* current)
+void BSTMap::insert(value_type toAdd)
+{
+  Node* newNode = new Node();
+  newNode->data = toAdd;
+  insertHelper(newNode, root);
+}
+
+void BSTMap::insertHelper(Node* toAdd, Node* current)
 {
   if(current == nullptr)
   {
@@ -57,11 +64,11 @@ void BSTMap::insert(Node* toAdd, Node* current)
   }
   else if(current->data.first < toAdd->data.first)
   {
-    return insert(toAdd, current->right);
+    return insertHelper(toAdd, current->right);
   }
   else if(current->data.first > toAdd->data.first)
   {
-    return insert(toAdd, current->left);
+    return insertHelper(toAdd, current->left);
   }
 }
 
@@ -153,7 +160,7 @@ void BSTMap::getAllHelper(vector<value_type>& vect, Node* curr, const key_type &
   {
     return;
   }
-  if(curr->data.first.contains(k))
+  if(curr->data.first.find(k) != std::string::npos)
   {
     vect.push_back(curr->data);
   }
