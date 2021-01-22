@@ -143,7 +143,23 @@ BSTMap::mapped_type &BSTMap::operator[](const key_type &k)
 vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const 
 {
   vector<value_type> v;
+  getAllHelper(v, root, k);
   return v;
+}
+
+void BSTMap::getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const
+{
+  if(curr == nullptr)
+  {
+    return;
+  }
+  if(curr->data.first.contains(k))
+  {
+    vect.push_back(curr->data);
+  }
+  getAllHelper(vect, curr->left, k);
+  getAllHelper(vect, curr->right, k);
+  return;
 }
 
 // 0 if empty, 1 if only root, otherwise

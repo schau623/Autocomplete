@@ -167,6 +167,9 @@ private:
   //helpers for rebalance()
   void storeNodes(Node* curr, vector<Node*> &save);
   Node* rebalanceHelper(vector<Node*> &save, int start, int end);
+
+  // getAll traverser
+  void getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const;
 };
 
 #endif // BSTMAP_H
