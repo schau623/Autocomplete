@@ -172,6 +172,8 @@ private:
 
   // getAll traverser
   void getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const;
+
+  bool getMapType()
 };
 
 #endif // BSTMAP_H

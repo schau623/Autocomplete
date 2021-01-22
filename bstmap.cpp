@@ -143,6 +143,11 @@ bool BSTMap::contains(Node* root, const key_type &key) const
 // with that key and returns a reference to its mapped value.
 BSTMap::mapped_type &BSTMap::operator[](const key_type &k) 
 {
+  //first search thro bstmap for k
+  if(contains(k))
+  {
+    return 
+  }
   assert(false && "operator[] has not been implemented");
   return root->data.second;
 }
