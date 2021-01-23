@@ -148,38 +148,39 @@ bool BSTMap::contains(Node* curr, const key_type &key) const
 // If k matches the key returns a reference to its value
 // If k does not match any key, inserts a new element
 // with that key and returns a reference to its mapped value.
-BSTMap::mapped_type &BSTMap::operator[](const key_type &k) //NEEDS WORK
+BSTMap::mapped_type &BSTMap::operator[](const key_type &k) 
 {
-  //first search thro bstmap for k
-  mapped_type& retVal = (root->data.second);
-  bool found = getMapType(retVal, k, root);
-  if(found)
+  if(contains(k))
   {
-    return retVal;
+    Node* theNode = getMapType(k, root);
+    return theNode->data.second;
   }
-  // If not found, we will insert it as a new value_type then traverse to find
-  // the mapped_type&
-  pair<key_type, mapped_type> toAdd;
-  toAdd.first = k;
-  toAdd.second = 0;
-  insert(toAdd);
-  getMapType(retVal, k, root);
-  return retVal;
+  pair<string,uint64_t> newNode;
+  newNode.first = k;
+  newNode.second = 0;
+  insert(newNode);
+  Node* theNode = getMapType(k, root);
+  return theNode->data.second;
 }
 
-bool BSTMap::getMapType(mapped_type& retVal, const key_type &k, Node* curr)
+BSTMap::Node* BSTMap::getMapType(const key_type &k, Node* curr)
 {
   if(curr == nullptr)
   {
-    return false;
+    return nullptr;
   }
-  if(k == curr->data.first)
+  else if(k == curr->data.first)
   {
-    retVal = (curr->data.second);
-    return true;
+    return curr;
   }
-  // recursive case: Traverse tree to see if key exists
-  return getMapType(retVal, k, curr->left) || getMapType(retVal, k, curr->right);
+  else if(k > curr->data.first)
+  {
+    return getMapType(k, curr->right);
+  }
+  else
+  {
+    return getMapType(k, curr->left);
+  }
 }
 
 vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const 

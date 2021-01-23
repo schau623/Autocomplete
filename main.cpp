@@ -39,11 +39,37 @@ int main(int argc, char *argv[]) {
   b.second = 89438;
   tree.insert(b);
   pair<string, int> c;
-  c.first = "Seaway";
+  c.first = "Seaatle";
   c.second = 83128;
   tree.insert(c);
-  tree["LA"] = 5555;
+  tree["Bandori"] = 30;
   tree.rebalance();
+
+
+
+  BSTMap tree2;
+  pair<string, int> a2;
+  a2.first = "Seattle";
+  a2.second = 750000;
+  tree2.insert(a2);
+  pair<string, int> b2;
+  b2.first = "Sea";
+  b2.second = 89438;
+  tree2.insert(b2);
+  pair<string, int> c2;
+  c2.first = "Seaatle";
+  c2.second = 83128;
+  tree2.insert(c2);
+  tree2["Bandori"] = 30;
+  tree2.rebalance();
+  cout << tree2.size() << endl;
+  cout << tree2 << endl;
+
+ /* bool sameTreeTest = (tree == tree2);
+  cout << "SUPPOSED TO BE 1: " << sameTreeTest << endl;
+  cout << "SUPPOSED TO BE 4, 3, I THINK: " << tree.size() << ", " << tree.height() << endl;
+*/
+  tree.clear();
+  cout << tree.empty() << endl;
   cout << tree.size() << endl;
-  cout << tree << endl;
 }
