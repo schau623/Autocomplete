@@ -34,5 +34,13 @@ int main(int argc, char *argv[]) {
   a.first = "Seattle";
   a.second = 750000;
   tree.insert(a);
+  pair<string, int> b;
+  a.first = "Kirkland";
+  a.second = 89438;
+  tree.insert(b);
+  pair<string, int> c;
+  a.first = "Bellevue";
+  a.second = 83128;
+  tree.insert(c);
   cout << tree << endl;
 }

@@ -148,7 +148,7 @@ private:
   static int getHeight(const Node *n);
 
   // Insert method to add values
-  void insertHelper(Node* toAdd, Node* current);
+  Node* insertHelper(Node* toAdd, Node* current);
 
   // Contains recursive traversal helper method
   bool contains(Node* root, const key_type &key) const;

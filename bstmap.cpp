@@ -37,7 +37,7 @@ BSTMap::BSTMap(const vector<value_type> &v)
   {
     Node* theNode = new Node();
     theNode->data = v[i];
-    insertHelper(theNode, root);
+    insert(theNode);
   }
 }
 
@@ -53,23 +53,25 @@ void BSTMap::insert(value_type toAdd)
 {
   Node* newNode = new Node();
   newNode->data = toAdd;
-  insertHelper(newNode, root);
+  root = insertHelper(newNode, root);
 }
 
-void BSTMap::insertHelper(Node* toAdd, Node* current)
+BSTMap::Node* BSTMap::insertHelper(Node* toAdd, Node* current)
 {
   if(current == nullptr)
   {
-    current = toAdd;
-  }
-  else if(current->data.first < toAdd->data.first)
-  {
-    return insertHelper(toAdd, current->right);
+    return toAdd;
   }
   else if(current->data.first > toAdd->data.first)
   {
-    return insertHelper(toAdd, current->left);
+    current->left = insertHelper(toAdd, current->left);
   }
+  else if(current->data.first <= toAdd->data.first)
+  {
+    current->right = insertHelper(toAdd, current->right);
+    
+  }
+  return current;
 }
 
 
