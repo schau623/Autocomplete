@@ -287,8 +287,8 @@ void BSTMap::postorder(Node* current, void visit(const value_type &item)) const{
     {
         return;
     }
-    preorder(current->left, visit);
-    preorder(current->right, visit);
+    postorder(current->left, visit);
+    postorder(current->right, visit);
     value_type v = current->data;
     visit(v);
 }

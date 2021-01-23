@@ -109,7 +109,7 @@ void test03() {
 
 // // Calling all test functions
 void testBSTAll() {
-  //test01();
+  test01();
   test02();
   test03();
   // TODO(student) Add more tests
