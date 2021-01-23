@@ -13,19 +13,20 @@ using namespace std;
 // copy constructor
 BSTMap::BSTMap(const BSTMap &bst) 
 {
-  copyHelper(root, bst.root);
+  root = copyHelper(bst.root);
 }
 
-void BSTMap::copyHelper(Node* currentNewTree, Node* currentOldTree)
+BSTMap::Node* BSTMap::copyHelper(Node* copy)
 {
-  if(currentOldTree == nullptr)
+  if(copy == nullptr)
   {
-    return;
+    return nullptr;
   }
-  currentNewTree = new Node();
-  currentNewTree->data = currentOldTree->data;
-  copyHelper(currentNewTree->right, currentOldTree->right);
-  copyHelper(currentNewTree->left, currentOldTree->left);
+    Node* copyNode = new Node();
+    copyNode->data = copy->data;
+    copyNode->right = copyHelper(copy->right);
+    copyNode->left = copyHelper(copy->left);
+    return copy;
 }
 
 // given an array of length n

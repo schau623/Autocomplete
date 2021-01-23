@@ -1,4 +1,5 @@
 #include "autocomplete.h"
+#include <sstream>
 #include <algorithm>
 #include <fstream>
 #include <string>
@@ -8,28 +9,26 @@ using namespace std;
 void testBSTAll();
 
 void Autocomplete::readFile(const string &fileName) {
+    string s;
+    uint64_t i;
+    string t;
     ifstream ifs(fileName);
-    string line;
-    uint64_t weight;
-    string location;
+    getline(ifs, s);
     vector<pair<string, uint64_t>> v;
     if(ifs.is_open()){
-      getline(ifs, line); //To get rid of first line from file.
-        while(getline(ifs, line)){
-            stringstream ss(line);
-            ss >> weight;
-            getline(ss, location);
-            pair<string, uint64_t> p;
-            p.first = location;
-            p.second = weight;
-            cout << p.first << " " << p.second;
-            phrases.insert(p);
-        }
+    while(getline(ifs, s))
+      {
+          stringstream ss(s);
+          ss >> i;
+          getline(ss, t);
+          pair<string, uint64_t> p;
+          p.first = t;
+          p.second = i;
+          v.push_back(p);
+      }
+      ifs.close();
     }
-  ifs.close();
-
-  phrases.rebalance();
-  // cout << phrases << endl;
+    return;
 }
 
 bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b) 

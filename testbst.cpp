@@ -50,7 +50,10 @@ void test01() {
   assert(b1 == b2);
 
   BSTMap b3(b2);
+  cout << "b1: " << b1 << endl;
+  cout << "b3: " << b3 << endl;
   assert(b1 == b3);
+
   cout << "Ending tes01" << endl;
 }
 
@@ -106,7 +109,7 @@ void test03() {
 
 // // Calling all test functions
 void testBSTAll() {
-  test01();
+  //test01();
   test02();
   test03();
   // TODO(student) Add more tests

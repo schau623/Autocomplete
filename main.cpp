@@ -7,16 +7,16 @@
 
 using namespace std;
 
-/*void testBSTAll();
+/**/void testBSTAll();
 void testACAll();
 
 void testMain() {
   testBSTAll();
   testACAll();
 }
-*/
+
 int main(int argc, char *argv[]) {
-  /*if (argc == 3) {
+  if (argc == 3) {
     Autocomplete ac;
     string filename = argv[1];
     string prefix = argv[2];
@@ -28,8 +28,8 @@ int main(int argc, char *argv[]) {
   } else {
     testMain();
   }
-  return EXIT_SUCCESS;*/
-  BSTMap tree;
+  return EXIT_SUCCESS;
+ /* BSTMap tree;
   pair<string, int> a;
   a.first = "Seattle";
   a.second = 750000;
@@ -65,11 +65,7 @@ int main(int argc, char *argv[]) {
   cout << tree2.size() << endl;
   cout << tree2 << endl;
 
- /* bool sameTreeTest = (tree == tree2);
-  cout << "SUPPOSED TO BE 1: " << sameTreeTest << endl;
-  cout << "SUPPOSED TO BE 4, 3, I THINK: " << tree.size() << ", " << tree.height() << endl;
-*/
   tree.clear();
   cout << tree.empty() << endl;
-  cout << tree.size() << endl;
+  cout << tree.size() << endl;*/
 }

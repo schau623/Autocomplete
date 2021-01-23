@@ -156,7 +156,7 @@ private:
   void clearHelper(Node* current);
 
   // Copy constructor recursive traversal helper: Traverses both trees
-  void copyHelper(Node* currentNewTree, Node* currentOldTree);
+  Node* copyHelper(Node* copy);
 
   // == helper  
   bool isSameTree(Node* tree1, Node* tree2) const;
