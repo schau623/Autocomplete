@@ -37,7 +37,7 @@ BSTMap::BSTMap(const vector<value_type> &v)
   {
     Node* theNode = new Node();
     theNode->data = v[i];
-    insert(theNode);
+    insertHelper(theNode, root);
   }
 }
 
@@ -46,8 +46,6 @@ BSTMap::~BSTMap()
 {
   clear();
 }
-
-
 
 void BSTMap::insert(value_type toAdd)
 {
@@ -83,6 +81,7 @@ void BSTMap::clear()
     return;
   }
   clearHelper(root);
+  root = nullptr;
 }
 
 void BSTMap::clearHelper(Node* current)
@@ -91,8 +90,8 @@ void BSTMap::clearHelper(Node* current)
   {
     return;
   }
-  clearHelper(root->left);
-  clearHelper(root->right);
+  clearHelper(current->left);
+  clearHelper(current->right);
   delete current;
 }
 
@@ -107,7 +106,8 @@ bool BSTMap::empty() const
   return false;
 }
 
-int BSTMap::size() const {
+int BSTMap::size() const 
+{
   int return_val = sizeHelper(root);
   return return_val;
 }
@@ -117,8 +117,11 @@ int BSTMap::sizeHelper(Node* root) const
   if(root == nullptr)
   {
     return 0;
-  } else
+  } 
+  else
+  {
     return sizeHelper(root->left) + 1 + sizeHelper(root->right);
+  }
 }
 
 // true if item is in BST
@@ -127,23 +130,25 @@ bool BSTMap::contains(const key_type &key) const
   return contains(root, key); 
 }
 
-bool BSTMap::contains(Node* root, const key_type &key) const 
+bool BSTMap::contains(Node* curr, const key_type &key) const 
 {
-  if(root->data.first == key)
-  {
-    return true;
-  }
-  if(root == nullptr)
+  //cout << key << endl;
+  if(curr == nullptr)
   {
     return false;
   }
-  return(contains(root->left, key) || contains(root->right, key));
+  if(curr->data.first == key)
+  {
+    return true;
+  }
+  
+  return(contains(curr->left, key) || contains(curr->right, key));
 }
 
 // If k matches the key returns a reference to its value
 // If k does not match any key, inserts a new element
 // with that key and returns a reference to its mapped value.
-BSTMap::mapped_type &BSTMap::operator[](const key_type &k) 
+BSTMap::mapped_type &BSTMap::operator[](const key_type &k) //NEEDS WORK
 {
   //first search thro bstmap for k
   mapped_type& retVal = (root->data.second);
@@ -175,7 +180,6 @@ bool BSTMap::getMapType(mapped_type& retVal, const key_type &k, Node* curr)
   }
   // recursive case: Traverse tree to see if key exists
   return getMapType(retVal, k, curr->left) || getMapType(retVal, k, curr->right);
-
 }
 
 vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const 
