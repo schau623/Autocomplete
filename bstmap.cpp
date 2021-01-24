@@ -137,6 +137,7 @@ void BSTMap::clear()
   clearHelper(root);
   root = nullptr;
 }
+
 //recursively traverses tree and deletes nodes
 void BSTMap::clearHelper(Node* current)
 {
@@ -148,7 +149,6 @@ void BSTMap::clearHelper(Node* current)
   clearHelper(current->right);
   delete current;
 }
-
 
 // true if no nodes in BST
 bool BSTMap::empty() const 

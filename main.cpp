@@ -7,7 +7,7 @@
 
 using namespace std;
 
-/**/void testBSTAll();
+void testBSTAll();
 void testACAll();
 
 void testMain() {
