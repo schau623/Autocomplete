@@ -27,13 +27,13 @@ void Autocomplete::readFile(const string &fileName){
     if(ifs.is_open()){
     while(getline(ifs, s)) 
       {
-          stringstream ss(s);
-          ss >> i;
-          getline(ss, t);
-          pair<string, uint64_t> p;
-          p.first = trim(t);
-          p.second = i;
-          phrases.insert(p);
+        stringstream ss(s);
+        ss >> i;
+        getline(ss, t);
+        pair<string, uint64_t> p;
+        p.first = trim(t);
+        p.second = i;
+        phrases.insert(p);
       }
       phrases.rebalance();
       ifs.close();
