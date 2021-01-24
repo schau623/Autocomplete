@@ -62,42 +62,43 @@ bool BSTMap::erase(const key_type &k)
   }
 }
 
-BSTMap::Node* BSTMap::eraseHelper(Node* current, const key_type &k){
-    if(current == nullptr)
+BSTMap::Node* BSTMap::eraseHelper(Node* current, const key_type &k)
+{
+  if(current == nullptr)
+  {
+    return nullptr;
+  }
+  if(k < current->data.first)
+  {
+    current->left = eraseHelper(current->left, k);
+  }
+  else if(k > current->data.first)
+  {
+    current->right = eraseHelper(current->right, k);
+  }
+  else
+  {
+    if(current->left == nullptr && current->right == nullptr)
     {
       return nullptr;
     }
-    if(k < current->data.first)
+    else if((current->left != nullptr) && (current->right == nullptr))
     {
-      current->left = eraseHelper(current->left, k);
+      return current->left;
     }
-    else if(k > current->data.first)
+    else if(current->right != nullptr && current->left == nullptr)
     {
-      current->right = eraseHelper(current->right, k);
+      return current->right;
     }
-    else
+    auto successor = current->right;
+    while(successor->left != nullptr)
     {
-      if(current->left == nullptr && current->right == nullptr)
-      {
-        return nullptr;
-      }
-      else if((current->left != nullptr) && (current->right == nullptr))
-      {
-        return current->left;
-      }
-      else if(current->right != nullptr && current->left == nullptr)
-      {
-        return current->right;
-      }
-      auto successor = current->right;
-      while(successor->left != nullptr)
-      {
-        successor = successor->left;
-      }
-      current->data.first = successor->data.first;
-      current->right = eraseHelper(current->right, successor->data.first);
+      successor = successor->left;
     }
-      return current;
+    current->data.first = successor->data.first;
+    current->right = eraseHelper(current->right, successor->data.first);
+  }
+  return current;
 }
 
 //inserts new nodes into tree
