@@ -16,6 +16,7 @@ BSTMap::BSTMap(const BSTMap &bst)
   root = copyHelper(bst.root);
 }
 
+//copies tree recursively
 BSTMap::Node* BSTMap::copyHelper(Node* copy)
 {
   if(copy == nullptr)
@@ -48,6 +49,49 @@ BSTMap::~BSTMap()
   clear();
 }
 
+bool BSTMap::erase(const key_type &k){
+    if(contains(k) == false)
+    {
+      return false;
+    }
+    else
+    {
+      eraseHelper(root, k);
+      return true;
+    }
+   
+}
+
+BSTMap::Node* BSTMap::eraseHelper(Node* current, const key_type &k){
+    if(current == nullptr)
+    {
+      return nullptr;
+    }
+    if(k < current->data.first)
+    {
+      current->left = eraseHelper(current->left, k);
+    }
+    else if(k > current->data.first)
+    {
+      current->right = eraseHelper(current->right, k);
+    }
+      else{
+          if(current->left == nullptr && current->right == nullptr)
+              return nullptr;
+          else if((current->left != nullptr) && (current->right == nullptr))
+              return current->left;
+          else if(current->right != nullptr && current->left == nullptr)
+              return current->right;
+          auto successor = current->right;
+          while(successor->left != nullptr)
+              successor = successor->left;
+      current->data.first = successor->data.first;
+          current->right = eraseHelper(current->right, successor->data.first);
+      }
+      return current;
+}
+
+//inserts new nodes into tree
 void BSTMap::insert(value_type toAdd)
 {
   Node* newNode = new Node();
@@ -55,6 +99,7 @@ void BSTMap::insert(value_type toAdd)
   root = insertHelper(newNode, root);
 }
 
+//recursively traverses tree and addes new nodes
 BSTMap::Node* BSTMap::insertHelper(Node* toAdd, Node* current)
 {
   if(current == nullptr)
@@ -84,7 +129,7 @@ void BSTMap::clear()
   clearHelper(root);
   root = nullptr;
 }
-
+//recursively traverses tree and deletes nodes
 void BSTMap::clearHelper(Node* current)
 {
   if(current == nullptr)
@@ -107,12 +152,14 @@ bool BSTMap::empty() const
   return false;
 }
 
+//returns size of tree based on number of nodes
 int BSTMap::size() const 
 {
   int return_val = sizeHelper(root);
   return return_val;
 }
 
+//returns size of tree based on number of nodes
 int BSTMap::sizeHelper(Node* root) const
 {
   if(root == nullptr)
@@ -131,6 +178,7 @@ bool BSTMap::contains(const key_type &key) const
   return contains(root, key); 
 }
 
+//contains overload, recursively traverses tree searching for key_type &key
 bool BSTMap::contains(Node* curr, const key_type &key) const 
 {
   //cout << key << endl;
@@ -153,18 +201,19 @@ BSTMap::mapped_type &BSTMap::operator[](const key_type &k)
 {
   if(contains(k))
   {
-    Node* theNode = getMapType(k, root);
+    Node* theNode = bracketHelper(k, root);
     return theNode->data.second;
   }
   pair<string,uint64_t> newNode;
   newNode.first = k;
   newNode.second = 0;
   insert(newNode);
-  Node* theNode = getMapType(k, root);
+  Node* theNode = bracketHelper(k, root);
   return theNode->data.second;
 }
 
-BSTMap::Node* BSTMap::getMapType(const key_type &k, Node* curr)
+//recursively adds new node to tree
+BSTMap::Node* BSTMap::bracketHelper(const key_type &k, Node* curr)
 {
   if(curr == nullptr)
   {
@@ -176,14 +225,15 @@ BSTMap::Node* BSTMap::getMapType(const key_type &k, Node* curr)
   }
   else if(k > curr->data.first)
   {
-    return getMapType(k, curr->right);
+    return bracketHelper(k, curr->right);
   }
   else
   {
-    return getMapType(k, curr->left);
+    return bracketHelper(k, curr->left);
   }
 }
 
+//retireves all words starting with key_type &k
 vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const 
 {
   vector<value_type> v;
@@ -191,6 +241,7 @@ vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const
   return v;
 }
 
+//recursively traverses tree and adds to vector each word starting with key_type &k
 void BSTMap::getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const
 {
   if(curr == nullptr)
@@ -247,7 +298,7 @@ void BSTMap::inorder(void visit(const value_type &item)) const
 {
   inorder(root, visit);
 }
-
+//inorder overload
 void BSTMap::inorder(Node* current, void visit(const value_type &item)) const{
     if(current == nullptr)
     {
@@ -264,7 +315,7 @@ void BSTMap::preorder(void visit(const value_type &item)) const
 {
   preorder(root, visit);
 }
-
+//preorder overload
 void BSTMap::preorder(Node* current, void visit(const value_type &item)) const{
     if(current == nullptr)
     {
@@ -282,6 +333,7 @@ void BSTMap::postorder(void visit(const value_type &item)) const
   postorder(root, visit);
 }
 
+//postorder overload
 void BSTMap::postorder(Node* current, void visit(const value_type &item)) const{
     if(current == nullptr)
     {
@@ -302,7 +354,7 @@ void BSTMap::rebalance()
   int n = save.size();
   root = rebalanceHelper(save, 0, n-1);
 }
-
+//stores nodes in a vector
 void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
 {
   if(curr == nullptr)
@@ -313,7 +365,7 @@ void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
   save.push_back(curr);
   storeNodes(curr->right, save);
 }
-
+//rebalances tree
 BSTMap::Node* BSTMap:: rebalanceHelper(vector<Node*> &save, int start, int end)
 {
   if(start > end)
@@ -334,6 +386,7 @@ bool BSTMap::operator==(const BSTMap &other) const
   return isSameTree(root, other.root);
 }
 
+//recursively traverses both trees and compares them
 bool BSTMap::isSameTree(Node* tree1, Node* tree2) const
 {
   if(tree1 == nullptr && tree2 == nullptr)

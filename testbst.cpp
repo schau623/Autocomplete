@@ -137,10 +137,38 @@ void getAllTest()
   cout << "getAll Test Passed :)" << endl;
 }
 
+void catTest()
+{
+   cout << "Starting catTest" << endl;
+  BSTMap tree;
+  tree["Cat"] = 999999;
+  tree["CatTown"] = 9312;
+  tree["Kat"] = 2345;
+  tree["Mr. White"] = 10000;
+  tree["Michelle"] = 10020;
+  tree["Chomusuke"] = 10300;
+  tree["Sojiro"] = 30000;
+  tree["Oddie"] = 15400;
+  tree["Leon"] = 24000;
+  tree["Tippy"] = 45000;
+  tree.rebalance();
+  assert(tree.size() == 10);
+  assert(tree.height() == 4);
+  assert(tree.contains("Cat") == true);
+  assert(tree.contains("Dog") == false);
+  tree.erase("Leon");
+  assert(tree.contains("Leon") == false);
+  tree.clear();
+  assert(tree.size() == 0);
+  assert(tree.height() == 0);
+  cout << "Ending catTest" << endl;
+}
+
 // // Calling all test functions
 void testBSTAll() {
   test01();
   test02();
   test03();
   getAllTest();
+  catTest();
 }

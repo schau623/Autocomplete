@@ -153,6 +153,7 @@ private:
   // Contains recursive traversal helper method
   bool contains(Node* root, const key_type &key) const;
 
+  //helper for clear(), clears all nodes in tree
   void clearHelper(Node* current);
 
   // Copy constructor recursive traversal helper: Traverses both trees
@@ -172,8 +173,12 @@ private:
 
   // getAll traverser
   void getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const;
+  
+  //operator[] helper method
+  Node* bracketHelper(const key_type &k, Node* curr);
 
-  Node* getMapType(const key_type &k, Node* curr);
+  //erase helper
+  Node* eraseHelper(Node* current, const key_type &k);
 };
 
 #endif // BSTMAP_H
