@@ -12,6 +12,7 @@ void testAC01() {
   Autocomplete ac;
   ac.readFile("small.txt");
   auto v = ac.complete("hel");
+  cout << "size: " << v.size() << endl;
   assert(v.size() == 2);
   assert(v[0].first == "help");
   assert(v[0].second == 20);

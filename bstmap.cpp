@@ -26,7 +26,7 @@ BSTMap::Node* BSTMap::copyHelper(Node* copy)
     copyNode->data = copy->data;
     copyNode->right = copyHelper(copy->right);
     copyNode->left = copyHelper(copy->left);
-    return copy;
+    return copyNode;
 }
 
 // given an array of length n
@@ -197,7 +197,7 @@ void BSTMap::getAllHelper(vector<value_type>& vect, Node* curr, const key_type &
   {
     return;
   }
-  if(curr->data.first.find(k) != std::string::npos)
+  if(curr->data.first.rfind(k, 0) == 0)
   {
     vect.push_back(curr->data);
   }

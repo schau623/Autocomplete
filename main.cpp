@@ -31,41 +31,25 @@ int main(int argc, char *argv[]) {
   return EXIT_SUCCESS;
  /* BSTMap tree;
   pair<string, int> a;
-  a.first = "Seattle";
+  a.first = "eFork";
   a.second = 750000;
   tree.insert(a);
   pair<string, int> b;
-  b.first = "Sea";
+  b.first = "Fork Town";
   b.second = 89438;
   tree.insert(b);
   pair<string, int> c;
-  c.first = "Seaatle";
+  c.first = "Spoons and Fork";
   c.second = 83128;
   tree.insert(c);
-  tree["Bandori"] = 30;
+  tree["Fork City"] = 30;
   tree.rebalance();
+  
+  vector<pair<string, uint64_t>> v = tree.getAll("Fork");
 
-
-
-  BSTMap tree2;
-  pair<string, int> a2;
-  a2.first = "Seattle";
-  a2.second = 750000;
-  tree2.insert(a2);
-  pair<string, int> b2;
-  b2.first = "Sea";
-  b2.second = 89438;
-  tree2.insert(b2);
-  pair<string, int> c2;
-  c2.first = "Seaatle";
-  c2.second = 83128;
-  tree2.insert(c2);
-  tree2["Bandori"] = 30;
-  tree2.rebalance();
-  cout << tree2.size() << endl;
-  cout << tree2 << endl;
-
-  tree.clear();
-  cout << tree.empty() << endl;
-  cout << tree.size() << endl;*/
+  for(int i = 0; i < v.size(); i++)
+  {
+    cout << v[i].second << " ";
+    cout << v[i].first << endl;
+  }*/
 }
