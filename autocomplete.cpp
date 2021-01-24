@@ -7,11 +7,14 @@
 using namespace std;
 
 void testBSTAll();
-inline string Autocomplete::trim(string& str)
+
+
+string Autocomplete::trim(string& line)
 {
-    str.erase(0, str.find_first_not_of(' '));       //erase spaces before
-    str.erase(str.find_last_not_of(' ')+1);         //erase spaces after
-    return str;
+  const char* WhiteSpace = " \t\v\r\n";
+  std::size_t start = line.find_first_not_of(WhiteSpace);
+  std::size_t end = line.find_last_not_of(WhiteSpace);
+  return start == end ? std::string(): line.substr(start, end - start + 1);
 }
 
 void Autocomplete::readFile(const string &fileName){
@@ -29,11 +32,10 @@ void Autocomplete::readFile(const string &fileName){
           getline(ss, t);
           pair<string, uint64_t> p;
           p.first = trim(t);
-          cout << t << endl;
           p.second = i;
-          //cout << p.first << ", " << p.second << endl;
           phrases.insert(p);
       }
+      phrases.rebalance();
       ifs.close();
     }
     return;

@@ -21,7 +21,7 @@ private:
   // sorter
   bool static sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b);
 
-  inline string trim(string& str);
+  string trim(string& line);
 };
 
 #endif // AUTOCOMPLETE_H
