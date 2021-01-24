@@ -107,10 +107,40 @@ void test03() {
   cout << "Ending test03" << endl;
 }
 
+void getAllTest()
+{
+  cout << "Starting getAllTest. Test is by Alan and Steven :)" << endl;
+  BSTMap tree;
+  pair<string, int> a;
+  a.first = "eFork";
+  a.second = 750000;
+  tree.insert(a);
+  pair<string, int> b;
+  b.first = "Fork Town";
+  b.second = 89438;
+  tree.insert(b);
+  pair<string, int> c;
+  c.first = "Spoons and Fork";
+  c.second = 83128;
+  tree.insert(c);
+  tree["Fork City"] = 30;
+  tree.rebalance();
+  
+  vector<pair<string, uint64_t>> v = tree.getAll("Fork");
+
+  assert(v[0].first == "Fork Town");
+  assert(v[1].first == "Fork City");
+  tree["Kendama"] = 500;
+  assert(tree.contains("Kendama") == true);
+  tree.rebalance();
+  assert(tree.height() == 3);
+  cout << "getAll Test Passed :)" << endl;
+}
+
 // // Calling all test functions
 void testBSTAll() {
   test01();
   test02();
   test03();
-  // TODO(student) Add more tests
+  getAllTest();
 }

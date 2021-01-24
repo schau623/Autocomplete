@@ -11,10 +11,10 @@ void testBSTAll();
 
 string Autocomplete::trim(string& line)
 {
-  const char* WhiteSpace = " \t\v\r\n";
-  std::size_t start = line.find_first_not_of(WhiteSpace);
-  std::size_t end = line.find_last_not_of(WhiteSpace);
-  return start == end ? std::string(): line.substr(start, end - start + 1);
+  const char* emptySpace = " \t\v\r\n";
+  size_t first = line.find_first_not_of(emptySpace);
+  size_t last = line.find_last_not_of(emptySpace);
+  return first == last ? string(): line.substr(first, last - first + 1);
 }
 
 void Autocomplete::readFile(const string &fileName){
@@ -25,7 +25,7 @@ void Autocomplete::readFile(const string &fileName){
     getline(ifs, s);
     vector<pair<string, uint64_t>> v;
     if(ifs.is_open()){
-    while(getline(ifs, s)) //getline(ifs, s)
+    while(getline(ifs, s)) 
       {
           stringstream ss(s);
           ss >> i;
@@ -49,6 +49,7 @@ bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b)
 vector<BSTMap::value_type> Autocomplete::complete(const string &prefix) const 
 {
   vector<BSTMap::value_type> v =  phrases.getAll(prefix);
+  std::sort(v.begin(), v.end(), sortByWeight);
   return v;
 }
 

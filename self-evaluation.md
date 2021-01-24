@@ -1,18 +1,20 @@
 # Self-Evaluation
 
-## Name(s): 
+## Name(s): Alan Lai, Steven Chau
 
 Out of 20 points. Use output.txt created using 
 `./create-output.sh > output.txt 2>&1` for guidance.
 
 Complete all questions with "Q:"
 
-Q: Does the program compile and run to completion: Yes/No
+Q: Does the program compile and run to completion: YES!
 
 - If the program does not compile or gives a segmentation error when run, 
 the maximum possible grade is 50%. No need to continue with the rest of self-evaluation
 
-Q: All public functions have been implemented: ENTER_NUMBER
+
+
+Q: All public functions have been implemented: 0
 
 - -1 for each public function not implemented
 - Constructors:  BSTMap(), BSTMap(const BSTMap &bst); BSTMap(const vector<value_type> &v);

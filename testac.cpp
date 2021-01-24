@@ -12,7 +12,6 @@ void testAC01() {
   Autocomplete ac;
   ac.readFile("small.txt");
   auto v = ac.complete("hel");
-  cout << "size: " << v.size() << endl;
   assert(v.size() == 2);
   assert(v[0].first == "help");
   assert(v[0].second == 20);
@@ -35,9 +34,26 @@ void testAC02() {
   cout << "Ending tesAC02" << endl;
 }
 
+void studentACTest()
+{
+  Autocomplete ac;
+  cout << "Starting studentACTest" << endl;
+  ac.readFile("wiktionary.txt");
+  auto v = ac.complete("cat");
+  assert(v.size() == 11);
+  assert(v[0].first == "catch");
+  assert(v[0].second == 4971880);
+  assert(v[10].first == "catharine");
+  assert(v[10].second == 423969);
+  cout << "Ending studentACTest" << endl;
+
+}
+
+
 // // Calling all test functions
 void testACAll() {
   testAC01();
   testAC02();
-  // TODO(student) Add more tests
+  studentACTest();
+
 }

@@ -1,0 +1,550 @@
+Sun Jan 24 12:14:03 PST 2021
+Linux csslab1.uwb.edu 3.10.0-1160.11.1.el7.x86_64 #1 SMP Fri Dec 18 16:34:56 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+uid=995453(alanlai) gid=2120995453(alanlai) groups=2120995453(alanlai),605559(lab-access)
+=====================================================
+1. Compiles without warnings with -Wall -Wextra flags
+=====================================================
+In file included from /usr/local/gcc-9.2.0/include/c++/9.2.0/cassert:44,
+                 from testac.cpp:2:
+testac.cpp: In function ‘void studentACTest()’:
+testac.cpp:42:10: error: ‘phrases’ was not declared in this scope
+   42 |   assert(phrases.size() == 10000);
+      |          ^~~~~~~
+=====================================================
+2. Runs and produces correct output
+=====================================================
+./create-output.sh: line 69: ./a.out: No such file or directory
+=====================================================
+3. clang-tidy warnings are fixed
+=====================================================
+=====================================================
+4. clang-format does not find any formatting issues
+=====================================================
+Running clang-format on ./autocomplete.cpp
+2d1
+< #include <sstream>
+4a4
+> #include <sstream>
+11,14c11,12
+< 
+< string Autocomplete::trim(string& line)
+< {
+<   const char* emptySpace = " \t\v\r\n";
+---
+> string Autocomplete::trim(string &line) {
+>   const char *emptySpace = " \t\v\r\n";
+17c15
+<   return first == last ? string(): line.substr(first, last - first + 1);
+---
+>   return first == last ? string() : line.substr(first, last - first + 1);
+20,39c18,33
+< void Autocomplete::readFile(const string &fileName){
+<     string s;
+<     uint64_t i;
+<     string t;
+<     ifstream ifs(fileName);
+<     getline(ifs, s);
+<     vector<pair<string, uint64_t>> v;
+<     if(ifs.is_open()){
+<     while(getline(ifs, s)) 
+<       {
+<           stringstream ss(s);
+<           ss >> i;
+<           getline(ss, t);
+<           pair<string, uint64_t> p;
+<           p.first = trim(t);
+<           p.second = i;
+<           phrases.insert(p);
+<       }
+<       phrases.rebalance();
+<       ifs.close();
+---
+> void Autocomplete::readFile(const string &fileName) {
+>   string s;
+>   uint64_t i;
+>   string t;
+>   ifstream ifs(fileName);
+>   getline(ifs, s);
+>   vector<pair<string, uint64_t>> v;
+>   if (ifs.is_open()) {
+>     while (getline(ifs, s)) {
+>       stringstream ss(s);
+>       ss >> i;
+>       getline(ss, t);
+>       pair<string, uint64_t> p;
+>       p.first = trim(t);
+>       p.second = i;
+>       phrases.insert(p);
+41c35,38
+<     return;
+---
+>     phrases.rebalance();
+>     ifs.close();
+>   }
+>   return;
+44,45c41
+< bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b) 
+< {
+---
+> bool Autocomplete::sortByWeight(BSTMap::value_type &a, BSTMap::value_type &b) {
+49,51c45,46
+< vector<BSTMap::value_type> Autocomplete::complete(const string &prefix) const 
+< {
+<   vector<BSTMap::value_type> v =  phrases.getAll(prefix);
+---
+> vector<BSTMap::value_type> Autocomplete::complete(const string &prefix) const {
+>   vector<BSTMap::value_type> v = phrases.getAll(prefix);
+55d49
+< 
+Running clang-format on ./bstmap.cpp
+14,17c14
+< BSTMap::BSTMap(const BSTMap &bst) 
+< {
+<   root = copyHelper(bst.root);
+< }
+---
+> BSTMap::BSTMap(const BSTMap &bst) { root = copyHelper(bst.root); }
+19,22c16,17
+< BSTMap::Node* BSTMap::copyHelper(Node* copy)
+< {
+<   if(copy == nullptr)
+<   {
+---
+> BSTMap::Node *BSTMap::copyHelper(Node *copy) {
+>   if (copy == nullptr) {
+25,29c20,24
+<     Node* copyNode = new Node();
+<     copyNode->data = copy->data;
+<     copyNode->right = copyHelper(copy->right);
+<     copyNode->left = copyHelper(copy->left);
+<     return copyNode;
+---
+>   Node *copyNode = new Node();
+>   copyNode->data = copy->data;
+>   copyNode->right = copyHelper(copy->right);
+>   copyNode->left = copyHelper(copy->left);
+>   return copyNode;
+35,39c30,32
+< BSTMap::BSTMap(const vector<value_type> &v) 
+< {
+<   for(int i = 0; i < v.size(); i++)
+<   {
+<     Node* theNode = new Node();
+---
+> BSTMap::BSTMap(const vector<value_type> &v) {
+>   for (int i = 0; i < v.size(); i++) {
+>     Node *theNode = new Node();
+46,49c39
+< BSTMap::~BSTMap() 
+< {
+<   clear();
+< }
+---
+> BSTMap::~BSTMap() { clear(); }
+51,53c41,42
+< void BSTMap::insert(value_type toAdd)
+< {
+<   Node* newNode = new Node();
+---
+> void BSTMap::insert(value_type toAdd) {
+>   Node *newNode = new Node();
+58,61c47,48
+< BSTMap::Node* BSTMap::insertHelper(Node* toAdd, Node* current)
+< {
+<   if(current == nullptr)
+<   {
+---
+> BSTMap::Node *BSTMap::insertHelper(Node *toAdd, Node *current) {
+>   if (current == nullptr) {
+63,65c50
+<   }
+<   else if(current->data.first > toAdd->data.first)
+<   {
+---
+>   } else if (current->data.first > toAdd->data.first) {
+67,69c52
+<   }
+<   else if(current->data.first <= toAdd->data.first)
+<   {
+---
+>   } else if (current->data.first <= toAdd->data.first) {
+71d53
+<     
+76d57
+< 
+78,81c59,60
+< void BSTMap::clear() 
+< {
+<   if(root == nullptr)
+<   {
+---
+> void BSTMap::clear() {
+>   if (root == nullptr) {
+88,91c67,68
+< void BSTMap::clearHelper(Node* current)
+< {
+<   if(current == nullptr)
+<   {
+---
+> void BSTMap::clearHelper(Node *current) {
+>   if (current == nullptr) {
+99d75
+< 
+101,104c77,78
+< bool BSTMap::empty() const 
+< { 
+<   if(root == nullptr)
+<   {
+---
+> bool BSTMap::empty() const {
+>   if (root == nullptr) {
+110,111c84
+< int BSTMap::size() const 
+< {
+---
+> int BSTMap::size() const {
+116,119c89,90
+< int BSTMap::sizeHelper(Node* root) const
+< {
+<   if(root == nullptr)
+<   {
+---
+> int BSTMap::sizeHelper(Node *root) const {
+>   if (root == nullptr) {
+121,123c92
+<   } 
+<   else
+<   {
+---
+>   } else {
+129,132c98
+< bool BSTMap::contains(const key_type &key) const 
+< { 
+<   return contains(root, key); 
+< }
+---
+> bool BSTMap::contains(const key_type &key) const { return contains(root, key); }
+134,138c100,102
+< bool BSTMap::contains(Node* curr, const key_type &key) const 
+< {
+<   //cout << key << endl;
+<   if(curr == nullptr)
+<   {
+---
+> bool BSTMap::contains(Node *curr, const key_type &key) const {
+>   // cout << key << endl;
+>   if (curr == nullptr) {
+141,142c105
+<   if(curr->data.first == key)
+<   {
+---
+>   if (curr->data.first == key) {
+145,146c108,109
+<   
+<   return(contains(curr->left, key) || contains(curr->right, key));
+---
+> 
+>   return (contains(curr->left, key) || contains(curr->right, key));
+152,156c115,117
+< BSTMap::mapped_type &BSTMap::operator[](const key_type &k) 
+< {
+<   if(contains(k))
+<   {
+<     Node* theNode = getMapType(k, root);
+---
+> BSTMap::mapped_type &BSTMap::operator[](const key_type &k) {
+>   if (contains(k)) {
+>     Node *theNode = getMapType(k, root);
+159c120
+<   pair<string,uint64_t> newNode;
+---
+>   pair<string, uint64_t> newNode;
+163c124
+<   Node* theNode = getMapType(k, root);
+---
+>   Node *theNode = getMapType(k, root);
+167,170c128,129
+< BSTMap::Node* BSTMap::getMapType(const key_type &k, Node* curr)
+< {
+<   if(curr == nullptr)
+<   {
+---
+> BSTMap::Node *BSTMap::getMapType(const key_type &k, Node *curr) {
+>   if (curr == nullptr) {
+172,174c131
+<   }
+<   else if(k == curr->data.first)
+<   {
+---
+>   } else if (k == curr->data.first) {
+176,178c133
+<   }
+<   else if(k > curr->data.first)
+<   {
+---
+>   } else if (k > curr->data.first) {
+180,182c135
+<   }
+<   else
+<   {
+---
+>   } else {
+187,188c140
+< vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const 
+< {
+---
+> vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const {
+194,197c146,148
+< void BSTMap::getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const
+< {
+<   if(curr == nullptr)
+<   {
+---
+> void BSTMap::getAllHelper(vector<value_type> &vect, Node *curr,
+>                           const key_type &k) const {
+>   if (curr == nullptr) {
+200,201c151
+<   if(curr->data.first.rfind(k, 0) == 0)
+<   {
+---
+>   if (curr->data.first.rfind(k, 0) == 0) {
+211,214c161
+< int BSTMap::height() const 
+< { 
+<   return getHeight(root); 
+< }
+---
+> int BSTMap::height() const { return getHeight(root); }
+218,221c165,166
+< int BSTMap::getHeight(const Node* n)
+< { 
+<   if(n == nullptr)
+<   {
+---
+> int BSTMap::getHeight(const Node *n) {
+>   if (n == nullptr) {
+224,225c169
+<   if(n->left == nullptr && n->right == nullptr)
+<   {
+---
+>   if (n->left == nullptr && n->right == nullptr) {
+230c174
+<   return max(left,right)+1; 
+---
+>   return max(left, right) + 1;
+235,238c179,180
+< size_t BSTMap::count(const string &k) const 
+< { 
+<   if(!contains(k))
+<   {
+---
+> size_t BSTMap::count(const string &k) const {
+>   if (!contains(k)) {
+246,247c188
+< void BSTMap::inorder(void visit(const value_type &item)) const 
+< {
+---
+> void BSTMap::inorder(void visit(const value_type &item)) const {
+251,259c192,199
+< void BSTMap::inorder(Node* current, void visit(const value_type &item)) const{
+<     if(current == nullptr)
+<     {
+<         return;
+<     }
+<     inorder(current->left, visit);
+<     value_type v = current->data;
+<     visit(v);
+<     inorder(current->right, visit);
+---
+> void BSTMap::inorder(Node *current, void visit(const value_type &item)) const {
+>   if (current == nullptr) {
+>     return;
+>   }
+>   inorder(current->left, visit);
+>   value_type v = current->data;
+>   visit(v);
+>   inorder(current->right, visit);
+263,264c203
+< void BSTMap::preorder(void visit(const value_type &item)) const 
+< {
+---
+> void BSTMap::preorder(void visit(const value_type &item)) const {
+268,276c207,214
+< void BSTMap::preorder(Node* current, void visit(const value_type &item)) const{
+<     if(current == nullptr)
+<     {
+<         return;
+<     }
+<     value_type v = current->data;
+<     visit(v);
+<     preorder(current->left, visit);
+<     preorder(current->right, visit);
+---
+> void BSTMap::preorder(Node *current, void visit(const value_type &item)) const {
+>   if (current == nullptr) {
+>     return;
+>   }
+>   value_type v = current->data;
+>   visit(v);
+>   preorder(current->left, visit);
+>   preorder(current->right, visit);
+280,281c218
+< void BSTMap::postorder(void visit(const value_type &item)) const 
+< {
+---
+> void BSTMap::postorder(void visit(const value_type &item)) const {
+285,293c222,230
+< void BSTMap::postorder(Node* current, void visit(const value_type &item)) const{
+<     if(current == nullptr)
+<     {
+<         return;
+<     }
+<     postorder(current->left, visit);
+<     postorder(current->right, visit);
+<     value_type v = current->data;
+<     visit(v);
+---
+> void BSTMap::postorder(Node *current,
+>                        void visit(const value_type &item)) const {
+>   if (current == nullptr) {
+>     return;
+>   }
+>   postorder(current->left, visit);
+>   postorder(current->right, visit);
+>   value_type v = current->data;
+>   visit(v);
+298,300c235,236
+< void BSTMap::rebalance() 
+< {
+<   vector<Node*> save;
+---
+> void BSTMap::rebalance() {
+>   vector<Node *> save;
+303c239
+<   root = rebalanceHelper(save, 0, n-1);
+---
+>   root = rebalanceHelper(save, 0, n - 1);
+306,309c242,243
+< void BSTMap::storeNodes(Node* curr, vector<Node*> &save)
+< {
+<   if(curr == nullptr)
+<   {
+---
+> void BSTMap::storeNodes(Node *curr, vector<Node *> &save) {
+>   if (curr == nullptr) {
+317,320c251,253
+< BSTMap::Node* BSTMap:: rebalanceHelper(vector<Node*> &save, int start, int end)
+< {
+<   if(start > end)
+<   {
+---
+> BSTMap::Node *BSTMap::rebalanceHelper(vector<Node *> &save, int start,
+>                                       int end) {
+>   if (start > end) {
+323,326c256,259
+<   int mid = (start + end)/2;
+<   Node* root = save[mid];
+<   root->left = rebalanceHelper(save, start, mid-1);
+<   root->right = rebalanceHelper(save, mid+1, end);
+---
+>   int mid = (start + end) / 2;
+>   Node *root = save[mid];
+>   root->left = rebalanceHelper(save, start, mid - 1);
+>   root->right = rebalanceHelper(save, mid + 1, end);
+332,333c265
+< bool BSTMap::operator==(const BSTMap &other) const 
+< { 
+---
+> bool BSTMap::operator==(const BSTMap &other) const {
+337,340c269,270
+< bool BSTMap::isSameTree(Node* tree1, Node* tree2) const
+< {
+<   if(tree1 == nullptr && tree2 == nullptr)
+<   {
+---
+> bool BSTMap::isSameTree(Node *tree1, Node *tree2) const {
+>   if (tree1 == nullptr && tree2 == nullptr) {
+342,344c272,273
+<   }
+<   else if((tree1 == nullptr && tree2 != nullptr) || (tree1 != nullptr && tree2 == nullptr))
+<   {
+---
+>   } else if ((tree1 == nullptr && tree2 != nullptr) ||
+>              (tree1 != nullptr && tree2 == nullptr)) {
+346,348c275
+<   }
+<   else if(tree1->data != tree2->data)
+<   {
+---
+>   } else if (tree1->data != tree2->data) {
+351c278,279
+<   return (isSameTree(tree1->left, tree2->left) && isSameTree(tree1->right, tree2->right));
+---
+>   return (isSameTree(tree1->left, tree2->left) &&
+>           isSameTree(tree1->right, tree2->right));
+355,356c283
+< bool BSTMap::operator!=(const BSTMap &other) const 
+< { 
+---
+> bool BSTMap::operator!=(const BSTMap &other) const {
+Running clang-format on ./bstmapprinter.cpp
+9,10c9
+< ostream &operator<<(ostream &out, const BSTMap::Node &n) 
+< {
+---
+> ostream &operator<<(ostream &out, const BSTMap::Node &n) {
+17,18c16
+< ostream &operator<<(ostream &out, const BSTMap &bst) 
+< {
+---
+> ostream &operator<<(ostream &out, const BSTMap &bst) {
+20c18
+<   //BSTMap::printSideways(out, bst.root);
+---
+>   // BSTMap::printSideways(out, bst.root);
+22c20
+<    //BSTMap::printVertical([out], bst.root);
+---
+>   // BSTMap::printVertical([out], bst.root);
+36,37c34
+< ostream &BSTMap::printSideways(ostream &out, const Node *curr, int level) 
+< {
+---
+> ostream &BSTMap::printSideways(ostream &out, const Node *curr, int level) {
+Running clang-format on ./main.cpp
+1d0
+< #include "bstmap.h"
+2a2
+> #include "bstmap.h"
+10c10
+< /**/void testBSTAll();
+---
+> /**/ void testBSTAll();
+Running clang-format on ./testac.cpp
+37,38c37
+< void studentACTest()
+< {
+---
+> void studentACTest() {
+49d47
+< 
+52d49
+< 
+58d54
+< 
+Running clang-format on ./testbst.cpp
+110,111c110
+< void getAllTest()
+< {
+---
+> void getAllTest() {
+128c127
+<   
+---
+> 
+=====================================================
+5. No memory leaks using g++
+=====================================================
+=====================================================
+6. No memory leaks using valgrind, look for "definitely lost" 
+=====================================================

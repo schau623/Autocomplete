@@ -186,7 +186,6 @@ BSTMap::Node* BSTMap::getMapType(const key_type &k, Node* curr)
 
 vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const 
 {
-  cout << "PREFIX TO FIND: " <<  k << endl;
   vector<value_type> v;
   getAllHelper(v, root, k);
   return v;
@@ -194,14 +193,12 @@ vector<BSTMap::value_type> BSTMap::getAll(const key_type &k) const
 
 void BSTMap::getAllHelper(vector<value_type>& vect, Node* curr, const key_type &k) const
 {
-  cout << "WORD:" << curr->data.first << endl;
   if(curr == nullptr)
   {
     return;
   }
   if(curr->data.first.rfind(k, 0) == 0)
   {
-    cout << "got here" << endl;
     vect.push_back(curr->data);
   }
   getAllHelper(vect, curr->left, k);
