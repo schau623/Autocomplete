@@ -77,16 +77,24 @@ BSTMap::Node* BSTMap::eraseHelper(Node* current, const key_type &k){
     }
       else{
           if(current->left == nullptr && current->right == nullptr)
-              return nullptr;
+          {
+            return nullptr;
+          }
           else if((current->left != nullptr) && (current->right == nullptr))
-              return current->left;
+          {
+            return current->left;
+          }
           else if(current->right != nullptr && current->left == nullptr)
-              return current->right;
+          {
+            return current->right;
+          }
           auto successor = current->right;
           while(successor->left != nullptr)
-              successor = successor->left;
-      current->data.first = successor->data.first;
-          current->right = eraseHelper(current->right, successor->data.first);
+          {
+            successor = successor->left;
+          }
+        current->data.first = successor->data.first;
+        current->right = eraseHelper(current->right, successor->data.first);
       }
       return current;
 }
