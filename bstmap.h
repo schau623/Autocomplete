@@ -98,7 +98,7 @@ public:
 
   vector<value_type> getAll(const key_type &k) const;
 
-  void insert(value_type toAdd);
+  void insert(value_type const &toAdd);
 
   // trees are equal if they have the same structure
   // AND the same item values at all the nodes
@@ -151,7 +151,7 @@ private:
   Node* insertHelper(Node* toAdd, Node* current);
 
   // Contains recursive traversal helper method
-  bool contains(Node* root, const key_type &key) const;
+  bool contains(Node* curr, const key_type &key) const;
 
   //helper for clear(), clears all nodes in tree
   void clearHelper(Node* current);

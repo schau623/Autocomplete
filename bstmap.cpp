@@ -29,7 +29,7 @@ BSTMap::Node *BSTMap::copyHelper(Node *copy) {
 // create a tree to have all items in that array
 // with the minimum height (uses same helper as rebalance)
 BSTMap::BSTMap(const vector<value_type> &v) {
-  for (int i = 0; i < v.size(); i++) {
+  for (const auto &i : v) {
     Node *theNode = new Node();
     theNode->data = v[i];
     insertHelper(theNode, root);
@@ -40,12 +40,11 @@ BSTMap::BSTMap(const vector<value_type> &v) {
 BSTMap::~BSTMap() { clear(); }
 
 bool BSTMap::erase(const key_type &k) {
-  if (contains(k) == false) {
+  if (!contains(k)) {
     return false;
-  } else {
-    eraseHelper(root, k);
-    return true;
   }
+  eraseHelper(root, k);
+  return true;
 }
 
 BSTMap::Node *BSTMap::eraseHelper(Node *current, const key_type &k) {
@@ -75,7 +74,7 @@ BSTMap::Node *BSTMap::eraseHelper(Node *current, const key_type &k) {
 }
 
 // inserts new nodes into tree
-void BSTMap::insert(value_type toAdd) {
+void BSTMap::insert(value_type const &toAdd) {
   Node *newNode = new Node();
   newNode->data = toAdd;
   root = insertHelper(newNode, root);
@@ -113,26 +112,20 @@ void BSTMap::clearHelper(Node *current) {
 }
 
 // true if no nodes in BST
-bool BSTMap::empty() const {
-  if (root == nullptr) {
-    return true;
-  }
-  return false;
-}
+bool BSTMap::empty() const { return root == nullptr; }
 
 // returns size of tree based on number of nodes
 int BSTMap::size() const {
-  int return_val = sizeHelper(root);
-  return return_val;
+  int returnVal = sizeHelper(root);
+  return returnVal;
 }
 
 // returns size of tree based on number of nodes
 int BSTMap::sizeHelper(Node *root) const {
   if (root == nullptr) {
     return 0;
-  } else {
-    return sizeHelper(root->left) + 1 + sizeHelper(root->right);
   }
+  return sizeHelper(root->left) + 1 + sizeHelper(root->right);
 }
 
 // true if item is in BST
@@ -329,6 +322,6 @@ bool BSTMap::isSameTree(Node *tree1, Node *tree2) const {
 
 // not == to each other
 bool BSTMap::operator!=(const BSTMap &other) const {
-  bool return_value = isSameTree(root, other.root);
-  return !(return_value);
+  bool returnVal = isSameTree(root, other.root);
+  return !(returnVal);
 }
