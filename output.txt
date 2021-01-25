@@ -1,56 +1,56 @@
-Sun Jan 24 16:43:14 PST 2021
+Sun Jan 24 16:50:20 PST 2021
 Linux csslab1.uwb.edu 3.10.0-1160.11.1.el7.x86_64 #1 SMP Fri Dec 18 16:34:56 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 uid=930027(schau623) gid=2120930027(schau623) groups=2120930027(schau623),605559(lab-access)
 =====================================================
 1. Compiles without warnings with -Wall -Wextra flags
 =====================================================
-bstmap.cpp: In constructor ‘BSTMap::BSTMap(const std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >&)’:
-bstmap.cpp:34:22: error: no match for ‘operator[]’ (operand types are ‘const std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >’ and ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’)
-   34 |     theNode->data = v[i];
-      |                      ^
-In file included from /usr/local/gcc-9.2.0/include/c++/9.2.0/vector:67,
-                 from /usr/local/gcc-9.2.0/include/c++/9.2.0/queue:61,
-                 from bstmap.h:16,
-                 from bstmap.cpp:8:
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1040:7: note: candidate: ‘std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = std::pair<std::__cxx11::basic_string<char>, long unsigned int>; _Alloc = std::allocator<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >; std::vector<_Tp, _Alloc>::reference = std::pair<std::__cxx11::basic_string<char>, long unsigned int>&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
- 1040 |       operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      |       ^~~~~~~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1040:28: note:   no known conversion for argument 1 from ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’ to ‘std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >::size_type’ {aka ‘long unsigned int’}
- 1040 |       operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      |                  ~~~~~~~~~~^~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1058:7: note: candidate: ‘std::vector<_Tp, _Alloc>::const_reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) const [with _Tp = std::pair<std::__cxx11::basic_string<char>, long unsigned int>; _Alloc = std::allocator<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >; std::vector<_Tp, _Alloc>::const_reference = const std::pair<std::__cxx11::basic_string<char>, long unsigned int>&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
- 1058 |       operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      |       ^~~~~~~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1058:28: note:   no known conversion for argument 1 from ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’ to ‘std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >::size_type’ {aka ‘long unsigned int’}
- 1058 |       operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      |                  ~~~~~~~~~~^~~
 =====================================================
 2. Runs and produces correct output
 =====================================================
-./create-output.sh: line 69: ./a.out: No such file or directory
+Starting test01
+* Testing ==, !=, [] and copy constructor
+b1:    [hello=5]   
+  N   [world=42]
+
+
+b3:    [hello=5]   
+  N   [world=42]
+
+
+Ending tes01
+Starting test02
+* Testing traversal
+Ending test02
+Starting test03
+* Testing rebalance
+Ending test03
+Starting getAllTest. Test is by Alan and Steven :)
+getAll Test Passed :)
+Starting catTest
+Ending catTest
+Starting AC test01
+* Testing basic autocomplete
+Ending tesAC01
+Starting AC test02
+* Testing cities autocomplete
+Ending tesAC02
+Starting studentACTest01
+Ending studentACTest
+Starting studentACTest02
+Ending studentACTest02
 =====================================================
 3. clang-tidy warnings are fixed
 =====================================================
 17016 warnings generated.
-30352 warnings and 1 error generated.
-Error while processing /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmap.cpp.
-48111 warnings and 1 error generated.
-Error while processing /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmapprinter.cpp.
-63905 warnings and 1 error generated.
-Error while processing /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/main.cpp.
-76958 warnings and 1 error generated.
-Error while processing /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/testac.cpp.
-90550 warnings and 1 error generated.
-Error while processing /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/testbst.cpp.
-/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmap.cpp:34:22: error: no viable overloaded operator[] for type 'const vector<BSTMap::value_type>' (aka 'const vector<pair<basic_string<char>, unsigned long> >') [clang-diagnostic-error]
-    theNode->data = v[i];
-                     ^
-/opt/rh/devtoolset-8/root/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/bits/stl_vector.h:948:7: note: candidate function not viable: no known conversion from 'const std::pair<std::basic_string<char>, unsigned long>' to 'std::vector::size_type' (aka 'unsigned long') for 1st argument
-      operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      ^
-/opt/rh/devtoolset-8/root/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/bits/stl_vector.h:930:7: note: candidate function not viable: 'this' argument has type 'const vector<BSTMap::value_type>' (aka 'const vector<pair<basic_string<char>, unsigned long> >'), but method is not marked const
-      operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      ^
+30338 warnings generated.
+48097 warnings generated.
+63891 warnings generated.
+76944 warnings generated.
+90536 warnings generated.
+/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmap.cpp:32:3: error: use range-based for loop instead [modernize-loop-convert,-warnings-as-errors]
+  for (int i = 0; i < v.size(); i++) {
+  ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      (const auto & i : v)
 /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmap.cpp:61:7: error: do not use 'else' after 'return' [readability-else-after-return,-warnings-as-errors]
     } else if ((current->left != nullptr) && (current->right == nullptr)) {
       ^~~~~~~~
@@ -82,9 +82,9 @@ Error while processing /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738
 /home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmap.h:58:8: note: method 'BSTMap'::empty() defined here
   bool empty() const;
        ^
-Suppressed 90542 warnings (90540 in non-user code, 2 NOLINT).
+Suppressed 90527 warnings (90525 in non-user code, 2 NOLINT).
 Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
-8 warnings treated as errors
+9 warnings treated as errors
 =====================================================
 4. clang-format does not find any formatting issues
 =====================================================
@@ -152,65 +152,176 @@ Running clang-format on ./testbst.cpp
 =====================================================
 5. No memory leaks using g++
 =====================================================
-bstmap.cpp: In constructor ‘BSTMap::BSTMap(const std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >&)’:
-bstmap.cpp:34:22: error: no match for ‘operator[]’ (operand types are ‘const std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >’ and ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’)
-   34 |     theNode->data = v[i];
-      |                      ^
-In file included from /usr/local/gcc-9.2.0/include/c++/9.2.0/vector:67,
-                 from /usr/local/gcc-9.2.0/include/c++/9.2.0/queue:61,
-                 from bstmap.h:16,
-                 from bstmap.cpp:8:
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1040:7: note: candidate: ‘std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = std::pair<std::__cxx11::basic_string<char>, long unsigned int>; _Alloc = std::allocator<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >; std::vector<_Tp, _Alloc>::reference = std::pair<std::__cxx11::basic_string<char>, long unsigned int>&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
- 1040 |       operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      |       ^~~~~~~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1040:28: note:   no known conversion for argument 1 from ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’ to ‘std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >::size_type’ {aka ‘long unsigned int’}
- 1040 |       operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      |                  ~~~~~~~~~~^~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1058:7: note: candidate: ‘std::vector<_Tp, _Alloc>::const_reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) const [with _Tp = std::pair<std::__cxx11::basic_string<char>, long unsigned int>; _Alloc = std::allocator<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >; std::vector<_Tp, _Alloc>::const_reference = const std::pair<std::__cxx11::basic_string<char>, long unsigned int>&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
- 1058 |       operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      |       ^~~~~~~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1058:28: note:   no known conversion for argument 1 from ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’ to ‘std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >::size_type’ {aka ‘long unsigned int’}
- 1058 |       operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      |                  ~~~~~~~~~~^~~
 =====================================================
 6. No memory leaks using valgrind, look for "definitely lost" 
 =====================================================
-bstmap.cpp: In constructor ‘BSTMap::BSTMap(const std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >&)’:
-bstmap.cpp:34:22: error: no match for ‘operator[]’ (operand types are ‘const std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >’ and ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’)
-   34 |     theNode->data = v[i];
-      |                      ^
-In file included from /usr/local/gcc-9.2.0/include/c++/9.2.0/vector:67,
-                 from /usr/local/gcc-9.2.0/include/c++/9.2.0/queue:61,
-                 from bstmap.h:16,
-                 from bstmap.cpp:8:
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1040:7: note: candidate: ‘std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = std::pair<std::__cxx11::basic_string<char>, long unsigned int>; _Alloc = std::allocator<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >; std::vector<_Tp, _Alloc>::reference = std::pair<std::__cxx11::basic_string<char>, long unsigned int>&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
- 1040 |       operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      |       ^~~~~~~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1040:28: note:   no known conversion for argument 1 from ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’ to ‘std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >::size_type’ {aka ‘long unsigned int’}
- 1040 |       operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      |                  ~~~~~~~~~~^~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1058:7: note: candidate: ‘std::vector<_Tp, _Alloc>::const_reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) const [with _Tp = std::pair<std::__cxx11::basic_string<char>, long unsigned int>; _Alloc = std::allocator<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >; std::vector<_Tp, _Alloc>::const_reference = const std::pair<std::__cxx11::basic_string<char>, long unsigned int>&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
- 1058 |       operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      |       ^~~~~~~~
-/usr/local/gcc-9.2.0/include/c++/9.2.0/bits/stl_vector.h:1058:28: note:   no known conversion for argument 1 from ‘const std::pair<std::__cxx11::basic_string<char>, long unsigned int>’ to ‘std::vector<std::pair<std::__cxx11::basic_string<char>, long unsigned int> >::size_type’ {aka ‘long unsigned int’}
- 1058 |       operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      |                  ~~~~~~~~~~^~~
-cat: valgrind-output.txt: No such file or directory
+==17770== Memcheck, a memory error detector
+==17770== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==17770== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==17770== Command: ./a.out
+==17770== Parent PID: 14629
+==17770== 
+==17770== 
+==17770== HEAP SUMMARY:
+==17770==     in use at exit: 56 bytes in 1 blocks
+==17770==   total heap usage: 357,576 allocs, 357,575 frees, 16,433,020 bytes allocated
+==17770== 
+==17770== LEAK SUMMARY:
+==17770==    definitely lost: 56 bytes in 1 blocks
+==17770==    indirectly lost: 0 bytes in 0 blocks
+==17770==      possibly lost: 0 bytes in 0 blocks
+==17770==    still reachable: 0 bytes in 0 blocks
+==17770==         suppressed: 0 bytes in 0 blocks
+==17770== Rerun with --leak-check=full to see details of leaked memory
+==17770== 
+==17770== For lists of detected and suppressed errors, rerun with: -s
+==17770== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 =====================================================
 7. Tests have full code coverage
 =====================================================
-bstmap.cpp:34:22: error: no viable overloaded operator[] for type 'const vector<BSTMap::value_type>' (aka 'const vector<pair<basic_string<char>, unsigned long> >')
-    theNode->data = v[i];
-                    ~^~
-/opt/rh/devtoolset-8/root/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/bits/stl_vector.h:948:7: note: candidate function not viable: no known conversion from 'const std::pair<std::basic_string<char>, unsigned long>' to 'std::vector::size_type' (aka 'unsigned long') for 1st argument
-      operator[](size_type __n) const _GLIBCXX_NOEXCEPT
-      ^
-/opt/rh/devtoolset-8/root/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/bits/stl_vector.h:930:7: note: candidate function not viable: 'this' argument has type 'const vector<BSTMap::value_type>' (aka 'const vector<pair<basic_string<char>, unsigned long> >'), but method is not marked const
-      operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      ^
-1 error generated.
-ERROR: ./check-code-coverage.sh: Failed to create executable
-Sun Jan 24 16:44:10 PST 2021
+File '/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/autocomplete.cpp':
+Name                                                                                                         Regions    Miss   Cover     Lines    Miss   Cover
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Autocomplete::trim(std::string&)                                                                                   3       0 100.00%         6       0 100.00%
+Autocomplete::readFile(std::string const&)                                                                         5       0 100.00%        21       0 100.00%
+Autocomplete::sortByWeight(std::pair<std::string, unsigned long>&, std::pair<std::string, unsigned long>&)         1       0 100.00%         3       0 100.00%
+Autocomplete::complete(std::string const&) const                                                                   1       0 100.00%         5       0 100.00%
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                             10       0 100.00%        35       0 100.00%
+
+File '/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmap.cpp':
+Name                                                                                                                                                                          Regions    Miss   Cover     Lines    Miss   Cover
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BSTMap::BSTMap(BSTMap const&)                                                                                                                                                       1       0 100.00%         1       0 100.00%
+BSTMap::copyHelper(BSTMap::Node*)                                                                                                                                                   4       0 100.00%        10       0 100.00%
+BSTMap::BSTMap(std::vector<std::pair<std::string, unsigned long>, std::allocator<std::pair<std::string, unsigned long> > > const&)                                                  4       4   0.00%         7       7   0.00%
+BSTMap::~BSTMap()                                                                                                                                                                   1       0 100.00%         1       0 100.00%
+BSTMap::erase(std::string const&)                                                                                                                                                   4       1  75.00%         7       2  71.43%
+BSTMap::eraseHelper(BSTMap::Node*, std::string const&)                                                                                                                             28       4  85.71%        25       5  80.00%
+BSTMap::insert(std::pair<std::string, unsigned long> const&)                                                                                                                        1       0 100.00%         5       0 100.00%
+BSTMap::insertHelper(BSTMap::Node*, BSTMap::Node*)                                                                                                                                 10       0 100.00%        10       0 100.00%
+BSTMap::clear()                                                                                                                                                                     4       0 100.00%         7       0 100.00%
+BSTMap::clearHelper(BSTMap::Node*)                                                                                                                                                  4       0 100.00%         8       0 100.00%
+BSTMap::empty() const                                                                                                                                                               1       1   0.00%         1       1   0.00%
+BSTMap::size() const                                                                                                                                                                1       0 100.00%         4       0 100.00%
+BSTMap::sizeHelper(BSTMap::Node*) const                                                                                                                                             4       0 100.00%         6       0 100.00%
+BSTMap::contains(std::string const&) const                                                                                                                                          1       0 100.00%         1       0 100.00%
+BSTMap::contains(BSTMap::Node*, std::string const&) const                                                                                                                           9       0 100.00%        11       0 100.00%
+BSTMap::operator[](std::string const&)                                                                                                                                              4       0 100.00%        12       0 100.00%
+BSTMap::bracketHelper(std::string const&, BSTMap::Node*)                                                                                                                           10       1  90.00%        11       1  90.91%
+BSTMap::getAll(std::string const&) const                                                                                                                                            1       0 100.00%         5       0 100.00%
+BSTMap::getAllHelper(std::vector<std::pair<std::string, unsigned long>, std::allocator<std::pair<std::string, unsigned long> > >&, BSTMap::Node*, std::string const&) const         6       0 100.00%        11       0 100.00%
+BSTMap::height() const                                                                                                                                                              1       0 100.00%         1       0 100.00%
+BSTMap::getHeight(BSTMap::Node const*)                                                                                                                                              9       0 100.00%        11       0 100.00%
+BSTMap::count(std::string const&) const                                                                                                                                             4       4   0.00%         6       6   0.00%
+BSTMap::inorder(void (*)(std::pair<std::string, unsigned long> const&)) const                                                                                                       1       0 100.00%         3       0 100.00%
+BSTMap::inorder(BSTMap::Node*, void (*)(std::pair<std::string, unsigned long> const&)) const                                                                                        4       0 100.00%         9       0 100.00%
+BSTMap::preorder(void (*)(std::pair<std::string, unsigned long> const&)) const                                                                                                      1       0 100.00%         3       0 100.00%
+BSTMap::preorder(BSTMap::Node*, void (*)(std::pair<std::string, unsigned long> const&)) const                                                                                       4       0 100.00%         9       0 100.00%
+BSTMap::postorder(void (*)(std::pair<std::string, unsigned long> const&)) const                                                                                                     1       0 100.00%         3       0 100.00%
+BSTMap::postorder(BSTMap::Node*, void (*)(std::pair<std::string, unsigned long> const&)) const                                                                                      4       0 100.00%         9       0 100.00%
+BSTMap::rebalance()                                                                                                                                                                 1       0 100.00%         6       0 100.00%
+BSTMap::storeNodes(BSTMap::Node*, std::vector<BSTMap::Node*, std::allocator<BSTMap::Node*> >&)                                                                                      4       0 100.00%         8       0 100.00%
+BSTMap::rebalanceHelper(std::vector<BSTMap::Node*, std::allocator<BSTMap::Node*> >&, int, int)                                                                                      4       0 100.00%        10       0 100.00%
+BSTMap::operator==(BSTMap const&) const                                                                                                                                             1       0 100.00%         3       0 100.00%
+BSTMap::isSameTree(BSTMap::Node*, BSTMap::Node*) const                                                                                                                             20       2  90.00%        12       2  83.33%
+BSTMap::operator!=(BSTMap const&) const                                                                                                                                             1       0 100.00%         4       0 100.00%
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                                                                                             158      17  89.24%       240      24  90.00%
+
+File '/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/bstmapprinter.cpp':
+Name                                                                                                                                                                          Regions    Miss   Cover     Lines    Miss   Cover
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+operator<<(std::ostream&, BSTMap::Node const&)                                                                                                                                      1       0 100.00%         4       0 100.00%
+operator<<(std::ostream&, BSTMap const&)                                                                                                                                            1       0 100.00%         7       0 100.00%
+BSTMap::printSideways(std::ostream&, BSTMap::Node const*, int)                                                                                                                      4       4   0.00%        12      12   0.00%
+BSTMap::centeredPrint(std::ostream&, int, std::string const&, char)                                                                                                                 4       0 100.00%        11       0 100.00%
+BSTMap::printTreeLevel(std::ostream&, std::queue<BSTMap::Node const*, std::deque<BSTMap::Node const*, std::allocator<BSTMap::Node const*> > >&, int, int, int)                     10       0 100.00%        34       0 100.00%
+BSTMap::printVertical(std::ostream&, BSTMap::Node*)                                                                                                                                 7       1  85.71%        14       2  85.71%
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                                                                                              27       5  81.48%        82      14  82.93%
+
+File '/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/main.cpp':
+Name                                                                                                                                                                          Regions    Miss   Cover     Lines    Miss   Cover
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+testMain()                                                                                                                                                                          1       0 100.00%         4       0 100.00%
+main                                                                                                                                                                                5       2  60.00%        15       8  46.67%
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                                                                                               6       2  66.67%        19       8  57.89%
+
+File '/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/testac.cpp':
+Name                                                                                                                                                                          Regions    Miss   Cover     Lines    Miss   Cover
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+testAC01()                                                                                                                                                                          1       0 100.00%        13       0 100.00%
+testAC02()                                                                                                                                                                          1       0 100.00%        13       0 100.00%
+studentACTest01()                                                                                                                                                                   1       0 100.00%        12       0 100.00%
+studentACTest02()                                                                                                                                                                   1       0 100.00%        16       0 100.00%
+testACAll()                                                                                                                                                                         1       0 100.00%         7       0 100.00%
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                                                                                               5       0 100.00%        61       0 100.00%
+
+File '/home/NETID/schau623/2021wi343b-autocomplete-alan-lai1738/testbst.cpp':
+Name                                                                                                                                                                          Regions    Miss   Cover     Lines    Miss   Cover
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+printer(std::pair<std::string, unsigned long> const&)                                                                                                                               1       0 100.00%         3       0 100.00%
+test01()                                                                                                                                                                            1       0 100.00%        24       0 100.00%
+test02()                                                                                                                                                                            1       0 100.00%        27       0 100.00%
+test03()                                                                                                                                                                            1       0 100.00%        19       0 100.00%
+getAllTest()                                                                                                                                                                        1       0 100.00%        28       0 100.00%
+catTest()                                                                                                                                                                           1       0 100.00%        25       0 100.00%
+testBSTAll()                                                                                                                                                                        1       0 100.00%         7       0 100.00%
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                                                                                               7       0 100.00%       133       0 100.00%
+=====================================================
+The lines below were never executed
+=====================================================
+   31|      0|BSTMap::BSTMap(const vector<value_type> &v) {
+   32|      0|  for (int i = 0; i < v.size(); i++) {
+   33|      0|    Node *theNode = new Node();
+   34|      0|    theNode->data = v[i];
+   35|      0|    insertHelper(theNode, root);
+   36|      0|  }
+   37|      0|}
+   44|      0|    return false;
+   45|      0|  }
+   52|      0|    return nullptr;
+   53|      0|  }
+   57|      0|    current->right = eraseHelper(current->right, k);
+   60|      0|      return nullptr;
+   62|      0|      return current->left;
+  115|      0|bool BSTMap::empty() const { return root == nullptr; }
+  166|      0|    return nullptr;
+  218|      0|size_t BSTMap::count(const string &k) const {
+  219|      0|  if (!contains(k)) {
+  220|      0|    return 0;
+  221|      0|  }
+  222|      0|  return 1;
+  223|      0|}
+  317|      0|    return false;
+  318|      0|  }
+   37|      0|{
+   38|      0|  const static char space = ' ';
+   39|      0|  const static int readabilitySpaces = 4;
+   40|      0|  if (curr == nullptr) {
+   41|      0|    return out;
+   42|      0|  }
+   43|      0|  printSideways(out, curr->right, ++level);
+   44|      0|  out << setfill(space) << setw(level * readabilitySpaces) << space;
+   45|      0|  out << *curr << endl;
+   46|      0|  printSideways(out, curr->left, level);
+   47|      0|  return out;
+   48|      0|}
+  112|      0|    return out << "[__]";
+  113|      0|  }
+   20|      0|    Autocomplete ac;
+   21|      0|    string filename = argv[1];
+   22|      0|    string prefix = argv[2];
+   23|      0|    ac.readFile(filename);
+   24|      0|    auto results = ac.complete(prefix);
+   25|      0|    for (auto &p : results) {
+   26|      0|      cout << p.first << "\t" << p.second << endl;
+   27|      0|    }
+Sun Jan 24 16:52:49 PST 2021
 =====================================================
 To create an output.txt file with all the output from this script
 Run the below command
