@@ -29,7 +29,7 @@ BSTMap::Node *BSTMap::copyHelper(Node *copy) {
 // create a tree to have all items in that array
 // with the minimum height (uses same helper as rebalance)
 BSTMap::BSTMap(const vector<value_type> &v) {
-  for (const auto &i : v) {
+  for (int i = 0; i < v.size(); i++) {
     Node *theNode = new Node();
     theNode->data = v[i];
     insertHelper(theNode, root);
